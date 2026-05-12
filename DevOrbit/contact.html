@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — DevOrbit</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/rtl.css">
+    <style>
+        .contact-page {
+            padding-top: calc(var(--header-height) + 60px);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 80px;
+            margin-top: 60px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--color-accent-dim);
+            border: 1px solid var(--color-accent);
+            border-radius: 100px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--color-accent);
+            width: fit-content;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--color-accent);
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
+        }
+
+        .contact-method {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--color-accent);
+        }
+
+        .contact-method-info h4 {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .contact-method-info p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        .contact-form-container {
+            background: var(--bg-surface);
+            padding: 60px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 16px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--text);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--color-accent);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .error-msg {
+            color: #FF4444;
+            font-size: 0.75rem;
+            font-family: var(--font-mono);
+            margin-top: 4px;
+            height: 14px;
+        }
+
+        .success-msg {
+            background: var(--color-accent-dim);
+            color: var(--color-accent);
+            padding: 20px;
+            border-radius: var(--radius);
+            border: 1px solid var(--color-accent);
+            text-align: center;
+            font-family: var(--font-mono);
+            margin-top: 24px;
+        }
+
+        @media (max-width: 1024px) {
+            .contact-grid { grid-template-columns: 1fr; gap: 60px; }
+            .contact-form-container { padding: 40px; }
+        }
+
+        @media (max-width: 360px) {
+            .contact-form-container { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">DevOrbit<span>◉</span></a>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="home2.html" class="nav-link">Home 2</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="talks.html" class="nav-link">Talks</a>
+                <a href="opensource.html" class="nav-link">Open Source</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link active">Contact</a>
+            </nav>
+            <div class="nav-actions">
+                <button class="icon-btn" id="rtl-toggle"><i class="ph ph-arrows-left-right"></i></button>
+                <button class="icon-btn" id="theme-toggle"><i class="ph ph-moon"></i></button>
+                <a href="login.html" class="btn btn-primary" style="padding: 8px 20px;">Login</a>
+                <button class="icon-btn hamburger" id="hamburger"><i class="ph ph-list"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="contact-page">
+                <div class="section-header" style="text-align: left; margin-left: 0;">
+                    <span class="section-subtitle">Connect</span>
+                    <h1 class="hero-title">Let's Build for Developers Together</h1>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="status-pill">
+                            <span class="status-dot"></span>
+                            Currently available for Q3 2025 engagements
+                        </div>
+                        
+                        <div class="contact-method">
+                            <i class="ph ph-envelope-simple contact-icon"></i>
+                            <div class="contact-method-info">
+                                <h4>Email</h4>
+                                <p>hello@devorbit.com</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <i class="ph ph-linkedin-logo contact-icon"></i>
+                            <div class="contact-method-info">
+                                <h4>LinkedIn</h4>
+                                <p>linkedin.com/in/devorbit</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <i class="ph ph-twitter-logo contact-icon"></i>
+                            <div class="contact-method-info">
+                                <h4>Twitter / X</h4>
+                                <p>@devorbit</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <i class="ph ph-github-logo contact-icon"></i>
+                            <div class="contact-method-info">
+                                <h4>GitHub</h4>
+                                <p>github.com/devorbit</p>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 40px;">
+                            <h4 class="footer-heading">Location</h4>
+                            <div style="width: 100%; height: 250px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); color: var(--text-muted);">
+                                <!-- Map Placeholder -->
+                                <i class="ph ph-map-pin" style="font-size: 2rem; margin-right: 12px;"></i> Based in Chicago, IL (Global Remote)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-container">
+                        <form data-validate id="contact-form">
+                            <div class="form-group">
+                                <label class="form-label">Full Name *</label>
+                                <input type="text" class="form-control" placeholder="John Doe" required>
+                                <div class="error-msg"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Email Address *</label>
+                                <input type="email" class="form-control" placeholder="john@example.com" required>
+                                <div class="error-msg"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Subject *</label>
+                                <select class="form-control" required style="appearance: none;">
+                                    <option value="">Select a topic</option>
+                                    <option value="speaking">Speaking Request</option>
+                                    <option value="sdk">SDK Collaboration</option>
+                                    <option value="community">Community Partnership</option>
+                                    <option value="inquiry">General Inquiry</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <div class="error-msg"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Message *</label>
+                                <textarea class="form-control" placeholder="Tell me about your project..." required minlength="20"></textarea>
+                                <div class="error-msg"></div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 18px;">Send Message</button>
+                            
+                            <div class="success-msg" style="display: none;">
+                                Message sent! I'll be in orbit shortly. 🛸
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">DevOrbit<span>◉</span></a>
+                    <p class="footer-text">A developer advocate at the center of a gravitational ecosystem of communities, tools, and content.</p>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html" class="footer-link">Home</a></li>
+                        <li><a href="about.html" class="footer-link">About</a></li>
+                        <li><a href="talks.html" class="footer-link">Talks</a></li>
+                        <li><a href="opensource.html" class="footer-link">Open Source</a></li>
+                        <li><a href="blog.html" class="footer-link">Blog</a></li>
+                        <li><a href="contact.html" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Recent Talks</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" class="footer-link">KubeCon Keynote</a></li>
+                        <li><a href="#" class="footer-link">SDK Workshop</a></li>
+                        <li><a href="#" class="footer-link">OSS Panel</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Connect</h4>
+                    <div class="footer-socials">
+                        <a href="#" class="social-link"><i class="ph ph-github-logo"></i></a>
+                        <a href="#" class="social-link"><i class="ph ph-twitter-logo"></i></a>
+                        <a href="#" class="social-link"><i class="ph ph-linkedin-logo"></i></a>
+                        <a href="#" class="social-link"><i class="ph ph-dev-to-logo"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">© 2025 DevOrbit. Built for developers, by a developer.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Pre-fill subject if param exists
+        const urlParams = new URLSearchParams(window.location.search);
+        const subject = urlParams.get('subject');
+        if (subject) {
+            const select = document.querySelector('select');
+            if (subject === 'Speaking Request') select.value = 'speaking';
+        }
+    </script>
+</body>
+</html>

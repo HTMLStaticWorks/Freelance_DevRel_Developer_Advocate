@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Out of Orbit</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-image: radial-gradient(var(--border) 1px, transparent 1px);
+            background-size: 32px 32px;
+            text-align: center;
+        }
+
+        .error-container {
+            position: relative;
+        }
+
+        .error-code {
+            font-family: var(--font-mono);
+            font-size: clamp(8rem, 20vw, 15rem);
+            color: var(--color-accent);
+            line-height: 1;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .error-orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120%;
+            height: 120%;
+            border: 1px dashed var(--color-accent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: orbit-spin 10s linear infinite;
+            opacity: 0.3;
+        }
+
+        .error-planet {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--color-accent);
+            border-radius: 50%;
+            top: -5px;
+            left: 50%;
+        }
+
+        .error-title {
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .error-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-orbit">
+            <div class="error-planet"></div>
+        </div>
+        <div class="error-code">404</div>
+        <h2 class="error-title">You've drifted out of orbit.</h2>
+        <div class="error-btns">
+            <a href="index.html" class="btn btn-primary">Back to Home</a>
+            <a href="blog.html" class="btn btn-secondary">Back to Blog</a>
+        </div>
+    </div>
+
+    <div style="position: absolute; bottom: 40px; width: 100%;">
+        <p class="copyright">© 2025 DevOrbit. All rights reserved.</p>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

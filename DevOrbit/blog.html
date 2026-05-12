@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — DevOrbit</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/rtl.css">
+    <style>
+        .blog-hero {
+            padding-top: calc(var(--header-height) + 60px);
+            text-align: center;
+        }
+
+        .blog-featured {
+            margin-top: 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .blog-featured:hover {
+            border-color: var(--color-accent);
+        }
+
+        .featured-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .featured-content {
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .blog-card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+        }
+
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .blog-tag {
+            color: var(--color-accent);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 80px;
+        }
+
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-family: var(--font-mono);
+            transition: var(--transition);
+        }
+
+        .page-btn:hover, .page-btn.active {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        @media (max-width: 1024px) {
+            .blog-featured { grid-template-columns: 1fr; }
+            .featured-content { padding: 40px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">DevOrbit<span>◉</span></a>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="home2.html" class="nav-link">Home 2</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="talks.html" class="nav-link">Talks</a>
+                <a href="opensource.html" class="nav-link">Open Source</a>
+                <a href="blog.html" class="nav-link active">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+            <div class="nav-actions">
+                <button class="icon-btn" id="rtl-toggle"><i class="ph ph-arrows-left-right"></i></button>
+                <button class="icon-btn" id="theme-toggle"><i class="ph ph-moon"></i></button>
+                <a href="login.html" class="btn btn-primary" style="padding: 8px 20px;">Login</a>
+                <button class="icon-btn hamburger" id="hamburger"><i class="ph ph-list"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="blog-hero">
+            <div class="container">
+                <span class="section-subtitle">Insights</span>
+                <h1 class="hero-title">Developer Notes & Dispatches</h1>
+                
+                <div class="filter-bar" style="margin-top: 40px;">
+                    <button class="filter-btn active">All</button>
+                    <button class="filter-btn">SDK Tutorials</button>
+                    <button class="filter-btn">DevRel Insights</button>
+                    <button class="filter-btn">Community Building</button>
+                    <button class="filter-btn">Open Source</button>
+                </div>
+
+                <div class="blog-featured">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop" alt="Featured Post" class="featured-img">
+                    <div class="featured-content">
+                        <div class="blog-meta">
+                            <span class="blog-tag">DevRel Insights</span>
+                            <span>•</span>
+                            <span>May 12, 2024</span>
+                        </div>
+                        <h2 class="section-title" style="font-size: 2.5rem; text-align: left;">The Evolution of Developer Experience in 2024</h2>
+                        <p class="card-text" style="text-align: left; margin: 20px 0 40px;">Exploring the shift from simple APIs to comprehensive developer ecosystems and what it means for your strategy.</p>
+                        <a href="blog-single.html" class="btn btn-primary">Read Article</a>
+                    </div>
+                </div>
+
+                <div class="card-grid" style="margin-top: 60px;">
+                    <div class="card blog-card">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop" alt="Post 1">
+                        <div class="blog-meta">
+                            <span class="blog-tag">SDK Tutorials</span>
+                            <span>•</span>
+                            <span>May 05, 2024</span>
+                        </div>
+                        <h3 class="card-title">Building a TypeScript SDK from Scratch</h3>
+                        <p class="card-text">A step-by-step guide to setting up a modern SDK project with best practices.</p>
+                        <a href="blog-single.html" class="card-link">Read More <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                    <div class="card blog-card">
+                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop" alt="Post 2">
+                        <div class="blog-meta">
+                            <span class="blog-tag">Community Building</span>
+                            <span>•</span>
+                            <span>Apr 28, 2024</span>
+                        </div>
+                        <h3 class="card-title">Measuring the ROI of Developer Relations</h3>
+                        <p class="card-text">How to track and report the impact of your DevRel efforts beyond simple metrics.</p>
+                        <a href="blog-single.html" class="card-link">Read More <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                    <div class="card blog-card">
+                        <img src="https://images.unsplash.com/photo-1550439062-609e1531270e?q=80&w=2070&auto=format&fit=crop" alt="Post 3">
+                        <div class="blog-meta">
+                            <span class="blog-tag">Open Source</span>
+                            <span>•</span>
+                            <span>Apr 20, 2024</span>
+                        </div>
+                        <h3 class="card-title">OSS Maintenance: Lessons Learned</h3>
+                        <p class="card-text">The challenges and rewards of maintaining a popular open-source project over time.</p>
+                        <a href="blog-single.html" class="card-link">Read More <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="pagination">
+                    <a href="#" class="page-btn active">1</a>
+                    <a href="#" class="page-btn">2</a>
+                    <a href="#" class="page-btn">3</a>
+                    <a href="#" class="page-btn"><i class="ph ph-caret-right"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">DevOrbit<span>◉</span></a>
+                    <p class="footer-text">A developer advocate at the center of a gravitational ecosystem of communities, tools, and content.</p>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html" class="footer-link">Home</a></li>
+                        <li><a href="about.html" class="footer-link">About</a></li>
+                        <li><a href="talks.html" class="footer-link">Talks</a></li>
+                        <li><a href="opensource.html" class="footer-link">Open Source</a></li>
+                        <li><a href="blog.html" class="footer-link">Blog</a></li>
+                        <li><a href="contact.html" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Recent Talks</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" class="footer-link">KubeCon Keynote</a></li>
+                        <li><a href="#" class="footer-link">SDK Workshop</a></li>
+                        <li><a href="#" class="footer-link">OSS Panel</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Connect</h4>
+                    <div class="footer-socials">
+                        <a href="#" class="social-link"><i class="ph ph-github-logo"></i></a>
+                        <a href="#" class="social-link"><i class="ph ph-twitter-logo"></i></a>
+                        <a href="#" class="social-link"><i class="ph ph-linkedin-logo"></i></a>
+                        <a href="#" class="social-link"><i class="ph ph-dev-to-logo"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">© 2025 DevOrbit. Built for developers, by a developer.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

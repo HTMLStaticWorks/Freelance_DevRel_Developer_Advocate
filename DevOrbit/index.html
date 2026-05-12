@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOrbit — Developer Advocate & DevRel Engineer</title>
+    <meta name="description" content="Portfolio of DevOrbit, a Freelance DevRel & Developer Advocate specializing in technical content, community initiatives, and SDK tutorials.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/rtl.css">
+    
+    <style>
+        /* Hero Specific Styles */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-image: radial-gradient(var(--border) 1px, transparent 1px);
+            background-size: 32px 32px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .orbit-container {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border: 1px dashed var(--border);
+            border-radius: 50%;
+            animation: orbit-spin 20s linear infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .orbit-planet {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: var(--color-accent);
+            border-radius: 50%;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px var(--color-accent);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-role {
+            font-family: var(--font-mono);
+            color: var(--color-accent);
+            font-size: 1.2rem;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            margin-bottom: 32px;
+            line-height: 0.9;
+            text-transform: uppercase;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /* Marquee */
+        .marquee-section {
+            background: var(--bg-surface);
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .marquee-container {
+            display: flex;
+            gap: 60px;
+            animation: marquee-scroll 30s linear infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes marquee-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .marquee-item {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .marquee-item i {
+            color: var(--color-accent);
+        }
+
+        /* Case Studies */
+        .case-study-card {
+            display: flex;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 32px;
+            transition: var(--transition);
+        }
+
+        .case-study-card:hover {
+            border-color: var(--color-accent);
+        }
+
+        .case-study-img {
+            width: 40%;
+            min-height: 300px;
+            object-fit: cover;
+        }
+
+        .case-study-content {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 60%;
+        }
+
+        .case-study-stats {
+            display: flex;
+            gap: 32px;
+            margin-top: 24px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-value {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--color-accent);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 768px) {
+            .case-study-card {
+                flex-direction: column;
+            }
+            .case-study-img, .case-study-content {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">DevOrbit<span>◉</span></a>
+            
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="home2.html" class="nav-link">Home 2</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="talks.html" class="nav-link">Talks</a>
+                <a href="opensource.html" class="nav-link">Open Source</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="icon-btn" id="rtl-toggle" aria-label="Toggle RTL"><i class="ph ph-arrows-left-right"></i></button>
+                <button class="icon-btn" id="theme-toggle" aria-label="Toggle Theme"><i class="ph ph-moon"></i></button>
+                <a href="login.html" class="btn btn-primary" style="padding: 8px 20px;">Login</a>
+                <button class="icon-btn hamburger" id="hamburger" aria-label="Open Menu"><i class="ph ph-list"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <div class="drawer" id="drawer">
+        <button class="icon-btn drawer-close" id="drawer-close"><i class="ph ph-x"></i></button>
+        <div class="drawer-links">
+            <a href="index.html" class="drawer-link">Home</a>
+            <a href="home2.html" class="drawer-link">Home 2</a>
+            <a href="about.html" class="drawer-link">About</a>
+            <a href="talks.html" class="drawer-link">Talks</a>
+            <a href="opensource.html" class="drawer-link">Open Source</a>
+            <a href="blog.html" class="drawer-link">Blog</a>
+            <a href="contact.html" class="drawer-link">Contact</a>
+            <a href="login.html" class="drawer-link">Login</a>
+        </div>
+        <div class="drawer-footer">
+            <button class="btn btn-secondary" id="mobile-theme-toggle" style="width: 100%;"><i class="ph ph-moon"></i> Theme</button>
+            <button class="btn btn-secondary" id="mobile-rtl-toggle" style="width: 100%;"><i class="ph ph-arrows-left-right"></i> RTL</button>
+        </div>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="orbit-container">
+                <div class="orbit-planet"></div>
+                <img src="assets/img/devorbit_hero_avatar_1778608375334.png" alt="DevOrbit Avatar" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 150px; height: 150px; border-radius: 50%; border: 2px solid var(--color-accent); padding: 10px; background: var(--bg); z-index: 1;">
+            </div>
+            <div class="container hero-content">
+                <span class="hero-role">
+                    <span id="typewriter" data-words='["DevRel Engineer", "Developer Advocate", "Community Builder", "Open Source Contributor"]'></span><span class="cursor"></span>
+                </span>
+                <h1 class="hero-title">Centering Your <br> Developer <span style="color: var(--color-accent);">Universe</span></h1>
+                <div class="hero-btns">
+                    <a href="talks.html" class="btn btn-primary">See My Work</a>
+                    <a href="contact.html" class="btn btn-secondary">Let's Collaborate</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Marquee Section -->
+        <div class="marquee-section">
+            <div class="marquee-container">
+                <div class="marquee-item"><i class="ph ph-sketch-logo"></i> KubeCon 2024</div>
+                <div class="marquee-item"><i class="ph ph-sketch-logo"></i> DevRelCon</div>
+                <div class="marquee-item"><i class="ph ph-sketch-logo"></i> JSConf EU</div>
+                <div class="marquee-item"><i class="ph ph-sketch-logo"></i> GitHub Universe</div>
+                <div class="marquee-item"><i class="ph ph-sketch-logo"></i> AWS re:Invent</div>
+                <div class="marquee-item"><i class="ph ph-sketch-logo"></i> DockerCon</div>
+                <!-- Duplicate for seamless scroll -->
+                <div class="marquee-item"><i class="ph ph-sketch-logo"></i> KubeCon 2024</div>
+                <div class="marquee-item"><i class="ph ph-sketch-logo"></i> DevRelCon</div>
+                <div class="marquee-item"><i class="ph ph-sketch-logo"></i> JSConf EU</div>
+                <div class="marquee-item"><i class="ph ph-sketch-logo"></i> GitHub Universe</div>
+                <div class="marquee-item"><i class="ph ph-sketch-logo"></i> AWS re:Invent</div>
+                <div class="marquee-item"><i class="ph ph-sketch-logo"></i> DockerCon</div>
+            </div>
+        </div>
+
+        <!-- What I Do Section -->
+        <section class="services">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Core Focus</span>
+                    <h2 class="section-title">What I Do</h2>
+                </div>
+                <div class="card-grid">
+                    <div class="card">
+                        <i class="ph ph-megaphone card-icon"></i>
+                        <h3 class="card-title">Developer Advocacy</h3>
+                        <p class="card-text">Bridging the gap between engineering teams and external developers through empathy and clear communication.</p>
+                        <a href="#" class="card-link">Learn More <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                    <div class="card">
+                        <i class="ph ph-article card-icon"></i>
+                        <h3 class="card-title">Technical Writing</h3>
+                        <p class="card-text">Creating documentation, SDK guides, and blog posts that developers actually want to read.</p>
+                        <a href="#" class="card-link">Learn More <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                    <div class="card">
+                        <i class="ph ph-code card-icon"></i>
+                        <h3 class="card-title">SDK Tutorials</h3>
+                        <p class="card-text">Building sample apps and step-by-step guides that make integrating your product a breeze.</p>
+                        <a href="#" class="card-link">Learn More <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                    <div class="card">
+                        <i class="ph ph-users-three card-icon"></i>
+                        <h3 class="card-title">Community Programs</h3>
+                        <p class="card-text">Designing and leading ambassador programs that foster genuine engagement and loyalty.</p>
+                        <a href="#" class="card-link">Learn More <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                    <div class="card">
+                        <i class="ph ph-microphone-stage card-icon"></i>
+                        <h3 class="card-title">Conference Talks</h3>
+                        <p class="card-text">Delivering high-impact keynotes and technical workshops at leading industry events.</p>
+                        <a href="#" class="card-link">Learn More <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                    <div class="card">
+                        <i class="ph ph-git-branch card-icon"></i>
+                        <h3 class="card-title">OSS Contributions</h3>
+                        <p class="card-text">Maintaining and contributing to open-source projects to drive innovation and collaboration.</p>
+                        <a href="#" class="card-link">Learn More <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Talks Spotlight -->
+        <section class="talks-spotlight" style="background-color: var(--bg-surface);">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">On Stage</span>
+                    <h2 class="section-title">Talks Spotlight</h2>
+                </div>
+                <div class="card-grid">
+                    <div class="card">
+                        <span class="section-subtitle" style="font-size: 0.7rem; margin-bottom: 8px;">KubeCon 2024 • Keynote</span>
+                        <h3 class="card-title">The Future of DevEx in a Cloud Native World</h3>
+                        <p class="card-text">Exploring how developer experience is evolving as platforms become more complex and distributed.</p>
+                        <a href="talks.html" class="card-link">Watch Talk <i class="ph ph-play-circle"></i></a>
+                    </div>
+                    <div class="card">
+                        <span class="section-subtitle" style="font-size: 0.7rem; margin-bottom: 8px;">DevRelCon • Workshop</span>
+                        <h3 class="card-title">Building SDKs That Developers Love</h3>
+                        <p class="card-text">A deep dive into the patterns and practices that make for a world-class SDK experience.</p>
+                        <a href="talks.html" class="card-link">See Slides <i class="ph ph-presentation"></i></a>
+                    </div>
+                    <div class="card">
+                        <span class="section-subtitle" style="font-size: 0.7rem; margin-bottom: 8px;">JSConf EU • Panel</span>
+                        <h3 class="card-title">Open Source Sustainability</h3>
+                        <p class="card-text">Discussing the challenges and opportunities in maintaining healthy OSS ecosystems.</p>
+                        <a href="talks.html" class="card-link">View Panel <i class="ph ph-users-three"></i></a>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 60px;">
+                    <a href="talks.html" class="btn btn-secondary">View All Talks</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Studies -->
+        <section class="case-studies">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Impact</span>
+                    <h2 class="section-title">Case Studies</h2>
+                </div>
+                
+                <div class="case-study-card">
+                    <img src="https://images.unsplash.com/photo-1540575861501-7cf05a4b125a?q=80&w=2070&auto=format&fit=crop" alt="Community Growth" class="case-study-img">
+                    <div class="case-study-content">
+                        <span class="section-subtitle" style="font-size: 0.7rem; margin-bottom: 8px;">Scale-Up SaaS</span>
+                        <h3 class="card-title">Driving 300% Community Growth in 6 Months</h3>
+                        <p class="card-text">Implemented a comprehensive developer engagement strategy focusing on Discord community building and technical workshops.</p>
+                        <div class="case-study-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">+2,400</span>
+                                <span class="stat-label">Members</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">15+</span>
+                                <span class="stat-label">Events</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-study-card">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop" alt="SDK Launch" class="case-study-img">
+                    <div class="case-study-content">
+                        <span class="section-subtitle" style="font-size: 0.7rem; margin-bottom: 8px;">InfraTech Inc.</span>
+                        <h3 class="card-title">Launching the Next-Gen TypeScript SDK</h3>
+                        <p class="card-text">Led the technical design, documentation, and launch campaign for a new SDK, reducing onboarding time by 50%.</p>
+                        <div class="case-study-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">3</span>
+                                <span class="stat-label">SDKs Shipped</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">-50%</span>
+                                <span class="stat-label">TTV (Time to Value)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Latest Blog Posts -->
+        <section class="blog-preview" style="background-color: var(--bg-surface);">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Dispatches</span>
+                    <h2 class="section-title">Latest From The Blog</h2>
+                </div>
+                <div class="card-grid">
+                    <div class="card">
+                        <span class="section-subtitle" style="font-size: 0.7rem; margin-bottom: 8px;">May 10, 2024 • 5 min read</span>
+                        <h3 class="card-title">Why Documentation is Your Best DevRel Tool</h3>
+                        <p class="card-text">How high-quality docs can do more for your community than any marketing campaign ever could.</p>
+                        <a href="blog-single.html" class="card-link">Read More <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                    <div class="card">
+                        <span class="section-subtitle" style="font-size: 0.7rem; margin-bottom: 8px;">May 02, 2024 • 8 min read</span>
+                        <h3 class="card-title">The Art of the Technical Keynote</h3>
+                        <p class="card-text">Tips and tricks for delivering a presentation that resonates with developers and inspires action.</p>
+                        <a href="blog-single.html" class="card-link">Read More <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                    <div class="card">
+                        <span class="section-subtitle" style="font-size: 0.7rem; margin-bottom: 8px;">Apr 25, 2024 • 12 min read</span>
+                        <h3 class="card-title">Building in Public: An OSS Guide</h3>
+                        <p class="card-text">Navigating the transparency and challenges of maintaining a public open-source project.</p>
+                        <a href="blog-single.html" class="card-link">Read More <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section" style="padding: 120px 0; text-align: center;">
+            <div class="container">
+                <h2 class="section-title" style="margin-bottom: 40px;">Let's Build Something <br> for Developers</h2>
+                <a href="contact.html" class="btn btn-primary" style="padding: 20px 40px; font-size: 1.1rem;">Start a Conversation</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">DevOrbit<span>◉</span></a>
+                    <p class="footer-text">A developer advocate at the center of a gravitational ecosystem of communities, tools, and content.</p>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html" class="footer-link">Home</a></li>
+                        <li><a href="about.html" class="footer-link">About</a></li>
+                        <li><a href="talks.html" class="footer-link">Talks</a></li>
+                        <li><a href="opensource.html" class="footer-link">Open Source</a></li>
+                        <li><a href="blog.html" class="footer-link">Blog</a></li>
+                        <li><a href="contact.html" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Recent Talks</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" class="footer-link">KubeCon Keynote</a></li>
+                        <li><a href="#" class="footer-link">SDK Workshop</a></li>
+                        <li><a href="#" class="footer-link">OSS Panel</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Connect</h4>
+                    <div class="footer-socials">
+                        <a href="#" class="social-link"><i class="ph ph-github-logo"></i></a>
+                        <a href="#" class="social-link"><i class="ph ph-twitter-logo"></i></a>
+                        <a href="#" class="social-link"><i class="ph ph-linkedin-logo"></i></a>
+                        <a href="#" class="social-link"><i class="ph ph-dev-to-logo"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">© 2025 DevOrbit. Built for developers, by a developer.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

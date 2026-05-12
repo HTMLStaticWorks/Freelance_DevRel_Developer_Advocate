@@ -1,0 +1,25 @@
+[dir="rtl"] body {
+    text-align: right;
+}
+
+[dir="rtl"] .logo {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .nav-link.active::after {
+    left: auto;
+    right: 0;
+}
+
+[dir="rtl"] .footer-link:hover {
+    padding-left: 0;
+    padding-right: 4px;
+}
+
+[dir="rtl"] .card {
+    align-items: flex-start;
+}
+
+[dir="rtl"] .btn-primary svg {
+    transform: scaleX(-1);
+}

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOrbit — Home 2</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/rtl.css">
+    <style>
+        .hero-v2 {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: var(--header-height);
+        }
+        
+        .hero-v2-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-v2-title {
+            font-size: clamp(4rem, 10vw, 8rem);
+            line-height: 0.8;
+            text-transform: uppercase;
+        }
+
+        .hero-v2-right {
+            display: grid;
+            gap: 24px;
+        }
+
+        .hero-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            padding: 30px;
+            border-radius: var(--radius);
+            transform: translateY(30px);
+            opacity: 0;
+            animation: slideUp 0.6s forwards;
+        }
+
+        .hero-card:nth-child(1) { animation-delay: 0.2s; }
+        .hero-card:nth-child(2) { animation-delay: 0.4s; }
+        .hero-card:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes slideUp {
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .stat-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            margin: 60px 0;
+        }
+
+        .stat-pill {
+            padding: 12px 24px;
+            background: var(--color-accent-dim);
+            border: 1px solid var(--color-accent);
+            border-radius: 100px;
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .asymmetric-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+
+        .grid-item {
+            grid-column: span 6;
+        }
+
+        .grid-item.large { grid-column: span 8; }
+        .grid-item.small { grid-column: span 4; }
+
+        .github-graph {
+            background: var(--bg-surface);
+            padding: 40px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .graph-grid {
+            display: grid;
+            grid-template-columns: repeat(20, 1fr);
+            gap: 4px;
+            margin-top: 20px;
+        }
+
+        .graph-cell {
+            aspect-ratio: 1;
+            background: var(--border);
+            border-radius: 2px;
+        }
+
+        .graph-cell.active { background: var(--color-accent); }
+        .graph-cell.mid { background: rgba(0, 255, 148, 0.5); }
+        .graph-cell.low { background: rgba(0, 255, 148, 0.2); }
+
+        @media (max-width: 1024px) {
+            .hero-v2-grid { grid-template-columns: 1fr; }
+            .grid-item { grid-column: span 12 !important; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header (Same as index.html) -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">DevOrbit<span>◉</span></a>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="home2.html" class="nav-link active">Home 2</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="talks.html" class="nav-link">Talks</a>
+                <a href="opensource.html" class="nav-link">Open Source</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+            <div class="nav-actions">
+                <button class="icon-btn" id="rtl-toggle"><i class="ph ph-arrows-left-right"></i></button>
+                <button class="icon-btn" id="theme-toggle"><i class="ph ph-moon"></i></button>
+                <a href="login.html" class="btn btn-primary" style="padding: 8px 20px;">Login</a>
+                <button class="icon-btn hamburger" id="hamburger"><i class="ph ph-list"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <div class="drawer" id="drawer">
+        <button class="icon-btn drawer-close" id="drawer-close"><i class="ph ph-x"></i></button>
+        <div class="drawer-links">
+            <a href="index.html" class="drawer-link">Home</a>
+            <a href="home2.html" class="drawer-link">Home 2</a>
+            <a href="about.html" class="drawer-link">About</a>
+            <a href="talks.html" class="drawer-link">Talks</a>
+            <a href="opensource.html" class="drawer-link">Open Source</a>
+            <a href="blog.html" class="drawer-link">Blog</a>
+            <a href="contact.html" class="drawer-link">Contact</a>
+            <a href="login.html" class="drawer-link">Login</a>
+        </div>
+        <div class="drawer-footer">
+            <button class="btn btn-secondary" id="mobile-theme-toggle" style="width: 100%;"><i class="ph ph-moon"></i> Theme</button>
+            <button class="btn btn-secondary" id="mobile-rtl-toggle" style="width: 100%;"><i class="ph ph-arrows-left-right"></i> RTL</button>
+        </div>
+    </div>
+
+    <main>
+        <section class="hero-v2">
+            <div class="container">
+                <div class="hero-v2-grid">
+                    <div class="hero-v2-left">
+                        <h1 class="hero-v2-title">BUILD <br> FOR <br> <span style="color: var(--color-accent);">DEVS</span></h1>
+                    </div>
+                    <div class="hero-v2-right">
+                        <div class="hero-card">
+                            <span class="section-subtitle">Latest Talk</span>
+                            <h3>Future of SDKs</h3>
+                            <p>KubeCon 2024</p>
+                        </div>
+                        <div class="hero-card">
+                            <span class="section-subtitle">Latest Blog</span>
+                            <h3>Empathy in Code</h3>
+                            <p>5 min read</p>
+                        </div>
+                        <div class="hero-card">
+                            <span class="section-subtitle">GitHub Stats</span>
+                            <h3>1.2K Contributions</h3>
+                            <p>This Year</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-strip">
+            <div class="container">
+                <div class="stat-pills">
+                    <div class="stat-pill"><span data-count="12">0</span> CONFERENCES</div>
+                    <div class="stat-pill"><span data-count="48">0</span> BLOG POSTS</div>
+                    <div class="stat-pill"><span data-count="6">0</span> OSS PROJECTS</div>
+                    <div class="stat-pill"><span data-count="3000" data-suffix="+">0</span> COMMUNITY MEMBERS</div>
+                    <div class="stat-pill"><span data-count="150" data-suffix="+">0</span> WORKSHOPS</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="asymmetric-showcase">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Showcase</span>
+                    <h2 class="section-title">Technical Content</h2>
+                </div>
+                <div class="asymmetric-grid">
+                    <div class="grid-item large card">
+                        <i class="ph ph-presentation card-icon"></i>
+                        <h3 class="card-title">Keynote: The API Economy</h3>
+                        <p class="card-text">A strategic overview of how APIs are shaping the modern technical landscape.</p>
+                        <a href="talks.html" class="card-link">View Details</a>
+                    </div>
+                    <div class="grid-item small card">
+                        <i class="ph ph-book-open card-icon"></i>
+                        <h3 class="card-title">SDK Guide</h3>
+                        <p class="card-text">Comprehensive guide for TypeScript developers.</p>
+                        <a href="blog.html" class="card-link">Read Guide</a>
+                    </div>
+                    <div class="grid-item small card">
+                        <i class="ph ph-microphone card-icon"></i>
+                        <h3 class="card-title">Podcast Guest</h3>
+                        <p class="card-text">Talking about DevRel on the "Code & Coffee" podcast.</p>
+                        <a href="#" class="card-link">Listen Now</a>
+                    </div>
+                    <div class="grid-item large card">
+                        <i class="ph ph-code card-icon"></i>
+                        <h3 class="card-title">Open Source Tooling</h3>
+                        <p class="card-text">Building CLI tools that simplify developer workflows and improve productivity across teams.</p>
+                        <a href="opensource.html" class="card-link">Explore Repos</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="oss-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Activity</span>
+                    <h2 class="section-title">Open Source Contributions</h2>
+                </div>
+                <div class="github-graph">
+                    <h4 class="footer-heading">GitHub Contributions</h4>
+                    <div class="graph-grid" id="graph-grid"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="newsletter" style="padding: 120px 0;">
+            <div class="container" style="max-width: 600px; text-align: center;">
+                <h2 class="section-title">Stay In Orbit</h2>
+                <p style="color: var(--text-muted); margin-bottom: 32px;">Get the latest dispatches on DevRel, community building, and technical content delivered straight to your inbox.</p>
+                <form class="contact-form" data-validate style="display: flex; gap: 12px;">
+                    <input type="email" required placeholder="Enter your email" style="flex-grow: 1; padding: 12px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--bg-surface); color: var(--text);">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                    <p class="success-msg" style="display: none; color: var(--color-accent); margin-top: 12px;">Subscribed! Welcome to the orbit.</p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">DevOrbit<span>◉</span></a>
+                    <p class="footer-text">A developer advocate at the center of a gravitational ecosystem of communities, tools, and content.</p>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html" class="footer-link">Home</a></li>
+                        <li><a href="about.html" class="footer-link">About</a></li>
+                        <li><a href="talks.html" class="footer-link">Talks</a></li>
+                        <li><a href="opensource.html" class="footer-link">Open Source</a></li>
+                        <li><a href="blog.html" class="footer-link">Blog</a></li>
+                        <li><a href="contact.html" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Recent Talks</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" class="footer-link">KubeCon Keynote</a></li>
+                        <li><a href="#" class="footer-link">SDK Workshop</a></li>
+                        <li><a href="#" class="footer-link">OSS Panel</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Connect</h4>
+                    <div class="footer-socials">
+                        <a href="#" class="social-link"><i class="ph ph-github-logo"></i></a>
+                        <a href="#" class="social-link"><i class="ph ph-twitter-logo"></i></a>
+                        <a href="#" class="social-link"><i class="ph ph-linkedin-logo"></i></a>
+                        <a href="#" class="social-link"><i class="ph ph-dev-to-logo"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">© 2025 DevOrbit. Built for developers, by a developer.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        const grid = document.getElementById('graph-grid');
+        for (let i = 0; i < 100; i++) {
+            const cell = document.createElement('div');
+            cell.className = 'graph-cell';
+            const rand = Math.random();
+            if (rand > 0.8) cell.classList.add('active');
+            else if (rand > 0.6) cell.classList.add('mid');
+            else if (rand > 0.4) cell.classList.add('low');
+            grid.appendChild(cell);
+        }
+    </script>
+</body>
+</html>
