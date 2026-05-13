@@ -8,13 +8,30 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
         body {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            padding: 80px 20px 40px;
             background-image: radial-gradient(var(--border) 1px, transparent 1px);
             background-size: 32px 32px;
+            position: relative;
+        }
+
+        .auth-floating-actions {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            display: flex;
+            gap: 12px;
+            z-index: 100;
+        }
+
+        @media (max-width: 768px) {
+            .auth-floating-actions {
+                top: 16px;
+                right: 16px;
+            }
         }
 
         .auth-card {
@@ -30,6 +47,8 @@
 
         .auth-logo {
             margin-bottom: 32px;
+            display: flex;
+            justify-content: center;
         }
 
         .auth-form {
@@ -39,6 +58,7 @@
         .auth-title {
             font-size: 2rem;
             margin-bottom: 8px;
+            text-align: center;
         }
 
         .auth-subtitle {
@@ -46,6 +66,7 @@
             font-size: 0.9rem;
             margin-bottom: 32px;
             display: block;
+            text-align: center;
         }
 
         .social-auth {
@@ -60,24 +81,70 @@
             border: 1px solid #DADCE0;
             color: #3C4043;
             text-transform: none;
+            transition: var(--transition);
         }
 
-        .btn-email-neutral {
-            background: var(--bg-surface);
-            border: 1px solid var(--border);
-            color: var(--text);
+        .btn-google:hover {
+            background: #F8F9FA;
+            border-color: #D2E3FC;
+        }
+
+        [data-theme="dark"] .btn-google {
+            background: #202124;
+            border-color: #5F6368;
+            color: #E8EAED;
+        }
+
+        [data-theme="dark"] .btn-google:hover {
+            background: #303134;
+            border-color: #8AB4F8;
+        }
+
+        .btn-apple {
+            background: #0A0A0A;
+            border: 1px solid #0A0A0A;
+            color: #FFFFFF;
             text-transform: none;
+            transition: var(--transition);
+        }
+
+        .btn-apple:hover {
+            background: #333333;
+        }
+
+        [data-theme="dark"] .btn-apple {
+            background: #FFFFFF;
+            color: #000000;
+            border-color: #FFFFFF;
+        }
+
+        [data-theme="dark"] .btn-apple:hover {
+            background: #E8E8E8;
+        }
+
+        .hover-link {
+            transition: var(--transition);
+        }
+        
+        .hover-link:hover {
+            color: var(--color-accent) !important;
         }
 
         .auth-footer {
             margin-top: 24px;
             font-size: 0.85rem;
             color: var(--text-muted);
+            text-align: center;
         }
 
         .auth-footer a {
             color: var(--color-accent);
             font-weight: 700;
+            transition: var(--transition);
+        }
+
+        .auth-footer a:hover {
+            color: var(--text);
         }
 
         .divider {
@@ -100,6 +167,11 @@
     </style>
 </head>
 <body>
+    <div class="auth-floating-actions">
+        <button class="icon-btn" id="rtl-toggle"><i class="ph ph-arrows-left-right"></i></button>
+        <button class="icon-btn" id="theme-toggle"><i class="ph ph-moon"></i></button>
+    </div>
+
     <div class="auth-card">
         <div class="auth-logo">
             <a href="index.html" class="logo">DevOrbit<span>◉</span></a>
@@ -118,12 +190,19 @@
 
                 <div class="form-group" style="margin-bottom: 12px;">
                     <label class="form-label">Password</label>
-                    <input type="password" class="form-control" placeholder="••••••••" required>
+                    <div class="password-wrapper">
+                        <input type="password" class="form-control" placeholder="••••••••" required id="login-password">
+                        <button type="button" class="password-toggle" onclick="togglePassword('login-password', this)"><i class="ph ph-eye"></i></button>
+                    </div>
                     <div class="error-msg"></div>
                 </div>
 
-                <div style="text-align: right; margin-bottom: 24px;">
-                    <a href="#" style="font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);">Forgot Password?</a>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; font-size: 0.75rem; font-family: var(--font-mono); color: var(--text-muted);">
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="checkbox" style="margin: 0; cursor: pointer;">
+                        Remember Me
+                    </label>
+                    <a href="#" class="hover-link" style="color: var(--text-muted);">Forgot Password?</a>
                 </div>
 
                 <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
@@ -136,9 +215,9 @@
                     <svg width="18" height="18" viewBox="0 0 18 18"><path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z" fill="#4285f4"/><path d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.258c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z" fill="#34a853"/><path d="M3.964 10.712c-.18-.54-.282-1.117-.282-1.712s.102-1.173.282-1.712V4.956H.957a8.991 8.991 0 0 0 0 8.088l3.007-2.332z" fill="#fbbc05"/><path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.956L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z" fill="#ea4335"/></svg>
                     Continue with Google
                 </button>
-                <button class="btn btn-email-neutral">
-                    <i class="ph ph-envelope-simple"></i>
-                    Continue with Email
+                <button class="btn btn-apple">
+                    <i class="ph-fill ph-apple-logo" style="font-size: 1.2rem;"></i>
+                    Continue with Apple
                 </button>
             </div>
 
@@ -149,5 +228,20 @@
     </div>
 
     <script src="assets/js/main.js"></script>
+    <script>
+        function togglePassword(inputId, btn) {
+            const input = document.getElementById(inputId);
+            const icon = btn.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('ph-eye');
+                icon.classList.add('ph-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('ph-eye-slash');
+                icon.classList.add('ph-eye');
+            }
+        }
+    </script>
 </body>
 </html>

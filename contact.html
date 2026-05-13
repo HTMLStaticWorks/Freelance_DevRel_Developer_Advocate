@@ -14,7 +14,7 @@
 
         .contact-grid {
             display: grid;
-            grid-template-columns: 1fr 1.5fr;
+            grid-template-columns: 1.5fr 1fr;
             gap: 80px;
             margin-top: 60px;
         }
@@ -23,6 +23,8 @@
             display: flex;
             flex-direction: column;
             gap: 40px;
+            align-items: center;
+            text-align: center;
         }
 
         .status-pill {
@@ -35,7 +37,7 @@
             border-radius: 100px;
             font-family: var(--font-mono);
             font-size: 0.85rem;
-            color: var(--color-accent);
+            color: var(--text);
             width: fit-content;
         }
 
@@ -49,8 +51,9 @@
 
         .contact-method {
             display: flex;
-            gap: 20px;
-            align-items: flex-start;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
         }
 
         .contact-icon {
@@ -77,47 +80,6 @@
             border-radius: var(--radius);
         }
 
-        .form-group {
-            margin-bottom: 24px;
-        }
-
-        .form-label {
-            display: block;
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-            color: var(--text-muted);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 16px;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            color: var(--text);
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .form-control:focus {
-            border-color: var(--color-accent);
-        }
-
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .error-msg {
-            color: #FF4444;
-            font-size: 0.75rem;
-            font-family: var(--font-mono);
-            margin-top: 4px;
-            height: 14px;
-        }
-
         .success-msg {
             background: var(--color-accent-dim);
             color: var(--color-accent);
@@ -129,9 +91,34 @@
             margin-top: 24px;
         }
 
+        .map-container {
+            width: 100%;
+            height: 250px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .map-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            filter: grayscale(1) contrast(1.2);
+            transition: var(--transition);
+        }
+        
+        [data-theme="dark"] .map-iframe {
+            filter: grayscale(1) invert(0.9) contrast(1.2);
+        }
+
         @media (max-width: 1024px) {
-            .contact-grid { grid-template-columns: 1fr; gap: 60px; }
+            .contact-grid { gap: 40px; }
             .contact-form-container { padding: 40px; }
+        }
+
+        @media (max-width: 768px) {
+            .contact-grid { grid-template-columns: 1fr; gap: 60px; }
         }
 
         @media (max-width: 360px) {
@@ -171,6 +158,53 @@
                 </div>
 
                 <div class="contact-grid">
+                    <div class="contact-form-container">
+                        <form data-validate id="contact-form">
+                            <div class="form-group">
+                                <label class="form-label">Full Name *</label>
+                                <input type="text" class="form-control" placeholder="John Doe" required>
+                                <div class="error-msg"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Email Address *</label>
+                                <input type="email" class="form-control" placeholder="john@example.com" required>
+                                <div class="error-msg"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Company / Organization</label>
+                                <input type="text" class="form-control" placeholder="Acme Corp (Optional)">
+                                <div class="error-msg"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Subject *</label>
+                                <select class="form-control" required style="appearance: none;">
+                                    <option value="">Select a topic</option>
+                                    <option value="speaking">Speaking Request</option>
+                                    <option value="sdk">SDK Collaboration</option>
+                                    <option value="community">Community Partnership</option>
+                                    <option value="inquiry">General Inquiry</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <div class="error-msg"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Message *</label>
+                                <textarea class="form-control" placeholder="Tell me about your project..." required minlength="20"></textarea>
+                                <div class="error-msg"></div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 18px;">Send Message</button>
+                            
+                            <div class="success-msg" style="display: none;">
+                                Message sent! I'll be in orbit shortly. 🛸
+                            </div>
+                        </form>
+                    </div>
+
                     <div class="contact-info">
                         <div class="status-pill">
                             <span class="status-dot"></span>
@@ -209,54 +243,15 @@
                             </div>
                         </div>
 
-                        <div style="margin-top: 40px;">
-                            <h4 class="footer-heading">Location</h4>
-                            <div style="width: 100%; height: 250px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); color: var(--text-muted);">
-                                <!-- Map Placeholder -->
-                                <i class="ph ph-map-pin" style="font-size: 2rem; margin-right: 12px;"></i> Based in Chicago, IL (Global Remote)
+                        <div style="margin-top: 40px; width: 100%;">
+                            <h4 class="footer-heading" style="text-align: center;">Location</h4>
+                            <div class="map-container">
+                                <iframe class="map-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d190255.4385966567!2d-87.87223846174154!3d41.8339036577889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e2c3cd0f4cbed%3A0xafe0a6ad09c0c000!2sChicago%2C%20IL!5e0!3m2!1sen!2sus!4v1715612345678!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                <div style="position: absolute; bottom: 12px; left: 12px; background: var(--bg-surface); padding: 6px 14px; border: 1px solid var(--border); border-radius: 100px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text); pointer-events: none; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                                    <i class="ph ph-map-pin" style="color: var(--color-accent);"></i> Chicago, IL (Global Remote)
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="contact-form-container">
-                        <form data-validate id="contact-form">
-                            <div class="form-group">
-                                <label class="form-label">Full Name *</label>
-                                <input type="text" class="form-control" placeholder="John Doe" required>
-                                <div class="error-msg"></div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">Email Address *</label>
-                                <input type="email" class="form-control" placeholder="john@example.com" required>
-                                <div class="error-msg"></div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">Subject *</label>
-                                <select class="form-control" required style="appearance: none;">
-                                    <option value="">Select a topic</option>
-                                    <option value="speaking">Speaking Request</option>
-                                    <option value="sdk">SDK Collaboration</option>
-                                    <option value="community">Community Partnership</option>
-                                    <option value="inquiry">General Inquiry</option>
-                                    <option value="other">Other</option>
-                                </select>
-                                <div class="error-msg"></div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">Message *</label>
-                                <textarea class="form-control" placeholder="Tell me about your project..." required minlength="20"></textarea>
-                                <div class="error-msg"></div>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 18px;">Send Message</button>
-                            
-                            <div class="success-msg" style="display: none;">
-                                Message sent! I'll be in orbit shortly. 🛸
-                            </div>
-                        </form>
                     </div>
                 </div>
             </section>

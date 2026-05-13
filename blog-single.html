@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,9 +29,11 @@
         }
 
         .post-title {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            line-height: 1;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            line-height: 1.2;
             margin: 24px 0;
+            word-wrap: break-word;
+            word-break: break-word;
         }
 
         .post-hero-img {
@@ -78,9 +81,17 @@
             border: 1px solid var(--border);
         }
 
-        .code-keyword { color: #00FF94; }
-        .code-string { color: #f1e05a; }
-        .code-comment { color: #6B6B6B; }
+        .code-keyword {
+            color: #00FF94;
+        }
+
+        .code-string {
+            color: #f1e05a;
+        }
+
+        .code-comment {
+            color: #6B6B6B;
+        }
 
         .author-card {
             display: flex;
@@ -113,10 +124,12 @@
         .related-posts {
             margin-top: 100px;
             padding-top: 80px;
+            padding-bottom: 80px;
             border-top: 1px solid var(--border);
         }
     </style>
 </head>
+
 <body>
     <!-- Header -->
     <header>
@@ -144,8 +157,8 @@
         <article class="blog-post">
             <div class="container">
                 <a href="blog.html" class="back-link"><i class="ph ph-arrow-left"></i> Back to Blog</a>
-                
-                <header class="post-header">
+
+                <div class="post-header">
                     <div class="blog-meta">
                         <span class="blog-tag">DevRel Insights</span>
                         <span>•</span>
@@ -154,28 +167,39 @@
                         <span>10 min read</span>
                     </div>
                     <h1 class="post-title">The Evolution of Developer Experience in 2024</h1>
-                </header>
+                </div>
 
-                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop" alt="Blog Hero" class="post-hero-img">
+                <img src="assets/img/blog_img_feat.png" alt="Blog Hero" class="post-hero-img"
+                    style="border: 1px solid var(--border);">
 
                 <div class="article-content">
-                    <p>Developer Experience (DX) has moved far beyond just having good API documentation. In 2024, it's about the entire ecosystem that surrounds your product. From the first touchpoint in a community Discord to the seamless integration of a production-ready SDK, every step matters.</p>
+                    <p>Developer Experience (DX) has moved far beyond just having good API documentation. In 2024, it's
+                        about the entire ecosystem that surrounds your product. From the first touchpoint in a community
+                        Discord to the seamless integration of a production-ready SDK, every step matters.</p>
 
                     <h2>The Shift to Ecosystems</h2>
-                    <p>We are seeing a massive shift in how companies approach developers. It's no longer enough to provide a set of endpoints. Developers expect high-level abstractions, robust tooling, and a supportive community that helps them solve problems in real-time.</p>
+                    <p>We are seeing a massive shift in how companies approach developers. It's no longer enough to
+                        provide a set of endpoints. Developers expect high-level abstractions, robust tooling, and a
+                        supportive community that helps them solve problems in real-time.</p>
 
                     <blockquote>
-                        "The best developer tools don't just solve a technical problem; they empower the developer to feel like a superhero."
+                        "The best developer tools don't just solve a technical problem; they empower the developer to
+                        feel like a superhero."
                     </blockquote>
 
-                    <p>When we look at successful technical products today, they all share a common trait: they prioritize the developer's time and mental energy. This means reducing "Time to Hello World" and providing clear paths to production.</p>
+                    <p>When we look at successful technical products today, they all share a common trait: they
+                        prioritize the developer's time and mental energy. This means reducing "Time to Hello World" and
+                        providing clear paths to production.</p>
 
                     <h2>Code as Documentation</h2>
-                    <p>One of the most effective ways to improve DX is through high-quality sample code. Instead of explaining how something works, show it. Provide templates that developers can clone and adapt to their needs.</p>
+                    <p>One of the most effective ways to improve DX is through high-quality sample code. Instead of
+                        explaining how something works, show it. Provide templates that developers can clone and adapt
+                        to their needs.</p>
 
                     <div class="code-block">
                         <span class="code-comment">// Initialize the DevOrbit SDK</span><br>
-                        <span class="code-keyword">const</span> orbit = <span class="code-keyword">new</span> DevOrbit({<br>
+                        <span class="code-keyword">const</span> orbit = <span class="code-keyword">new</span>
+                        DevOrbit({<br>
                         &nbsp;&nbsp;apiKey: <span class="code-string">'your_api_key'</span>,<br>
                         &nbsp;&nbsp;environment: <span class="code-string">'production'</span><br>
                         });<br><br>
@@ -186,13 +210,18 @@
                         });
                     </div>
 
-                    <p>By providing clean, well-typed code examples, you reduce the friction of adoption and build trust with your users. Remember, developers are skeptical by nature—they want to see the code before they believe the marketing.</p>
+                    <p>By providing clean, well-typed code examples, you reduce the friction of adoption and build trust
+                        with your users. Remember, developers are skeptical by nature—they want to see the code before
+                        they believe the marketing.</p>
 
                     <div class="author-card">
-                        <img src="https://images.unsplash.com/photo-1556155092-490a1ba16284?q=80&w=2070&auto=format&fit=crop" alt="Author" class="author-avatar">
+                        <img src="assets/img/devorbit_hero_avatar_1778608375334.png" alt="DevOrbit Avatar"
+                            class="author-avatar"
+                            style="border: 2px solid var(--color-accent); padding: 4px; background: var(--bg);">
                         <div class="author-info">
                             <h4>DevOrbit</h4>
-                            <p>Freelance Developer Advocate & DevRel Engineer. Passionate about building communities and great developer experiences.</p>
+                            <p>Freelance Developer Advocate & DevRel Engineer. Passionate about building communities and
+                                great developer experiences.</p>
                         </div>
                     </div>
 
@@ -200,24 +229,28 @@
                         <h2 class="section-title">Related Posts</h2>
                         <div class="card-grid">
                             <div class="card blog-card">
-                                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop" alt="Post 1">
+                                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop"
+                                    alt="Post 1">
                                 <div class="blog-meta">
                                     <span class="blog-tag">SDK Tutorials</span>
                                     <span>•</span>
                                     <span>May 05, 2024</span>
                                 </div>
-                                <h3 class="card-title">Building a TypeScript SDK from Scratch</h3>
-                                <a href="blog-single.html" class="card-link">Read More <i class="ph ph-arrow-right"></i></a>
+                                <h3 class="card-title">Building a TypeScript from Scratch</h3>
+                                <a href="blog-single.html" class="card-link">Read More <i
+                                        class="ph ph-arrow-right"></i></a>
                             </div>
                             <div class="card blog-card">
-                                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop" alt="Post 2">
+                                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop"
+                                    alt="Post 2">
                                 <div class="blog-meta">
                                     <span class="blog-tag">Community Building</span>
                                     <span>•</span>
                                     <span>Apr 28, 2024</span>
                                 </div>
-                                <h3 class="card-title">Measuring the ROI of DevRel</h3>
-                                <a href="blog-single.html" class="card-link">Read More <i class="ph ph-arrow-right"></i></a>
+                                <h3 class="card-title">Measuring the ROI of DevRel Realtime</h3>
+                                <a href="blog-single.html" class="card-link">Read More <i
+                                        class="ph ph-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -232,7 +265,8 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="index.html" class="logo">DevOrbit<span>◉</span></a>
-                    <p class="footer-text">A developer advocate at the center of a gravitational ecosystem of communities, tools, and content.</p>
+                    <p class="footer-text">A developer advocate at the center of a gravitational ecosystem of
+                        communities, tools, and content.</p>
                 </div>
                 <div>
                     <h4 class="footer-heading">Navigation</h4>
@@ -271,4 +305,5 @@
 
     <script src="assets/js/main.js"></script>
 </body>
+
 </html>
