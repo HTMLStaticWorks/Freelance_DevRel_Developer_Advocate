@@ -142,6 +142,15 @@
             background: rgba(0, 255, 148, 0.2);
         }
 
+        .asymmetric-grid .card div {
+            align-items: center;
+            text-align: center;
+        }
+
+        .asymmetric-grid .card .card-link {
+            justify-content: center;
+        }
+
         .split-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -240,6 +249,24 @@
                 width: 100%;
                 max-width: calc(50% - 12px);
             }
+
+            .card {
+                padding: 24px;
+            }
+
+            .card-title {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .card {
+                padding: 20px;
+            }
+
+            .card-title {
+                font-size: 1.2rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -284,7 +311,7 @@
         <button class="icon-btn drawer-close" id="drawer-close"><i class="ph ph-x"></i></button>
         <div class="drawer-links">
             <a href="index.html" class="drawer-link">Home</a>
-            <a href="home2.html" class="drawer-link">Home 2</a>
+            <a href="home2.html" class="drawer-link active">Home 2</a>
             <a href="about.html" class="drawer-link">About</a>
             <a href="talks.html" class="drawer-link">Talks</a>
             <a href="opensource.html" class="drawer-link">Open Source</a>
@@ -582,10 +609,10 @@
                 <div>
                     <h4 class="footer-heading">Connect</h4>
                     <div class="footer-socials">
-                        <a href="#" class="social-link"><i class="ph ph-github-logo"></i></a>
-                        <a href="#" class="social-link"><i class="ph ph-twitter-logo"></i></a>
-                        <a href="#" class="social-link"><i class="ph ph-linkedin-logo"></i></a>
-                        <a href="#" class="social-link"><i class="ph ph-dev-to-logo"></i></a>
+                        <a href="#" class="social-link"><i class="ph ph-x-logo"></i></a>
+                        <a href="#" class="social-link"><i class="ph ph-facebook-logo"></i></a>
+                        <a href="#" class="social-link"><i class="ph ph-youtube-logo"></i></a>
+                        <a href="#" class="social-link"><i class="ph ph-whatsapp-logo"></i></a>
                     </div>
                 </div>
             </div>

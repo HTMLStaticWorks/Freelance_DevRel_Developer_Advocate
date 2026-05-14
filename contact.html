@@ -10,15 +10,95 @@
     <link rel="stylesheet" href="assets/css/rtl.css">
     <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
     <style>
+        .contact-hero {
+            padding-top: calc(var(--header-height) + 80px);
+            padding-bottom: 80px;
+            text-align: center;
+            position: relative;
+            background-image: radial-gradient(var(--border) 1px, transparent 1px);
+            background-size: 32px 32px;
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .contact-hero {
+                padding-top: calc(var(--header-height) + 40px);
+                padding-bottom: 40px;
+            }
+        }
+
+        .contact-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-hero-img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.15;
+            z-index: 1;
+            pointer-events: none;
+        }
+
         .contact-page {
-            padding-top: calc(var(--header-height) + 60px);
+            padding: 80px 0;
+        }
+
+        @media (max-width: 768px) {
+            .contact-page {
+                padding: 40px 0;
+            }
         }
 
         .contact-grid {
             display: grid;
             grid-template-columns: 1.5fr 1fr;
             gap: 80px;
-            margin-top: 60px;
+        }
+
+        .hero-title {
+            font-size: clamp(1.8rem, 6vw, 3.5rem);
+            text-transform: uppercase;
+            margin-top: 16px;
+            line-height: 1.1;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-title br {
+                display: none;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .hero-title {
+                font-size: 1.7rem;
+            }
+        }
+
+        .bio-text {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        @media (max-width: 480px) {
+            .bio-text {
+                font-size: 1rem;
+            }
         }
 
         .contact-info {
@@ -206,7 +286,7 @@
             <a href="talks.html" class="drawer-link">Talks</a>
             <a href="opensource.html" class="drawer-link">Open Source</a>
             <a href="blog.html" class="drawer-link">Blog</a>
-            <a href="contact.html" class="drawer-link">Contact</a>
+            <a href="contact.html" class="drawer-link active">Contact</a>
             <a href="login.html" class="btn btn-primary drawer-login-btn">Login</a>
         </div>
         <div class="drawer-footer">
@@ -218,13 +298,19 @@
     </div>
 
     <main>
+        <section class="contact-hero">
+            <img src="assets/img/contact_hero_illustration.png" alt="" class="contact-hero-img">
+            <div class="container contact-hero-content">
+
+                <h1 class="hero-title">Let's Build for <br> Developers <span
+                        style="color: var(--color-accent);">Together</span></h1>
+                <p class="bio-text" style="max-width: 600px; margin: 24px auto 0;">Have a project in mind or want to
+                    talk about DevRel strategy? Reach out and let's orbit around some great ideas.</p>
+            </div>
+        </section>
+
         <div class="container">
             <section class="contact-page">
-                <div class="section-header" style="text-align: left; margin-left: 0;">
-                    <span class="section-subtitle">Connect</span>
-                    <h1 class="hero-title">Let's Build for Developers Together</h1>
-                </div>
-
                 <div class="contact-grid">
                     <div class="contact-form-container">
                         <form data-validate id="contact-form">
@@ -314,10 +400,10 @@
                         <div class="social-follow">
                             <h4>Follow Me</h4>
                             <div class="social-icons">
-                                <a href="#" class="social-icon-link"><i class="ph ph-linkedin-logo"></i></a>
-                                <a href="#" class="social-icon-link"><i class="ph ph-github-logo"></i></a>
-                                <a href="#" class="social-icon-link"><i class="ph ph-twitter-logo"></i></a>
-                                <a href="#" class="social-icon-link"><i class="ph ph-instagram-logo"></i></a>
+                                <a href="#" class="social-icon-link"><i class="ph ph-x-logo"></i></a>
+                                <a href="#" class="social-icon-link"><i class="ph ph-facebook-logo"></i></a>
+                                <a href="#" class="social-icon-link"><i class="ph ph-youtube-logo"></i></a>
+                                <a href="#" class="social-icon-link"><i class="ph ph-whatsapp-logo"></i></a>
                             </div>
                         </div>
 
@@ -373,10 +459,10 @@
                 <div>
                     <h4 class="footer-heading">Connect</h4>
                     <div class="footer-socials">
-                        <a href="#" class="social-link"><i class="ph ph-github-logo"></i></a>
-                        <a href="#" class="social-link"><i class="ph ph-twitter-logo"></i></a>
-                        <a href="#" class="social-link"><i class="ph ph-linkedin-logo"></i></a>
-                        <a href="#" class="social-link"><i class="ph ph-dev-to-logo"></i></a>
+                        <a href="#" class="social-link"><i class="ph ph-x-logo"></i></a>
+                        <a href="#" class="social-link"><i class="ph ph-facebook-logo"></i></a>
+                        <a href="#" class="social-link"><i class="ph ph-youtube-logo"></i></a>
+                        <a href="#" class="social-link"><i class="ph ph-whatsapp-logo"></i></a>
                     </div>
                 </div>
             </div>
