@@ -88,15 +88,17 @@ section {
 .section-header {
     text-align: center;
     margin-bottom: 60px;
-    max-width: 700px;
+    max-width: 900px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .section-title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(2rem, 5vw, 4rem);
     margin-bottom: 16px;
     text-transform: uppercase;
+    overflow-wrap: normal;
+    word-break: keep-all;
 }
 
 .section-subtitle {
@@ -170,6 +172,11 @@ section {
     color: var(--color-accent);
 }
 
+[data-theme="dark"] input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
 /* --- Forms --- */
 .form-group {
     margin-bottom: 24px;
@@ -197,6 +204,7 @@ section {
 
 .form-control:focus {
     border-color: var(--color-accent);
+    box-shadow: 0 0 0 4px var(--color-accent-dim);
 }
 
 textarea.form-control {
@@ -245,6 +253,7 @@ header {
     left: 0;
     width: 100%;
     z-index: 1000;
+    background: var(--bg);
     border-bottom: 1px solid var(--border);
     backdrop-filter: blur(12px);
     transition: var(--transition);
@@ -453,6 +462,19 @@ header {
     align-items: center;
     gap: 8px;
     color: var(--color-accent);
+    transition: var(--transition);
+}
+
+.card-link i {
+    transition: transform 0.3s ease;
+}
+
+.card-link:hover {
+    color: var(--text);
+}
+
+.card-link:hover i {
+    transform: translateX(5px);
 }
 
 /* --- Blog --- */
@@ -569,17 +591,20 @@ footer {
 
 /* --- Responsive --- */
 @media (max-width: 1024px) {
-    .nav-links, .nav-actions .icon-btn:not(.hamburger) {
+    .nav-links, 
+    .nav-actions .icon-btn:not(.hamburger),
+    .nav-actions .btn {
         display: none;
     }
     
     .hamburger {
         display: flex;
     }
-    
-    .footer-grid {
-        grid-template-columns: 1fr 1fr;
-    }
+}
+
+.drawer-login-btn {
+    width: 100%;
+    margin-top: 10px;
 }
 
 @media (max-width: 768px) {
@@ -587,6 +612,13 @@ footer {
         padding: 60px 0;
     }
     
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+}
+
+@media (max-width: 480px) {
     .footer-grid {
         grid-template-columns: 1fr;
         gap: 40px;
@@ -609,5 +641,9 @@ footer {
     
     .drawer {
         width: 100%;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
     }
 }

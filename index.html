@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DevOrbit — Developer Advocate & DevRel Engineer</title>
-    <meta name="description" content="Portfolio of DevOrbit, a Freelance DevRel & Developer Advocate specializing in technical content, community initiatives, and SDK tutorials.">
-    
+    <meta name="description"
+        content="Portfolio of DevOrbit, a Freelance DevRel & Developer Advocate specializing in technical content, community initiatives, and SDK tutorials.">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+
     <!-- Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    
+
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/rtl.css">
-    
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+
     <style>
         /* Hero Specific Styles */
         .hero {
@@ -80,6 +83,20 @@
             justify-content: center;
         }
 
+        .orbit-avatar {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 2px solid var(--color-accent);
+            padding: 10px;
+            background: var(--bg);
+            z-index: 1;
+        }
+
         /* Marquee */
         .marquee-section {
             background: var(--bg-surface);
@@ -97,8 +114,13 @@
         }
 
         @keyframes marquee-scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
         .marquee-item {
@@ -142,11 +164,14 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
+            text-align: center;
             width: 60%;
         }
 
         .case-study-stats {
             display: flex;
+            justify-content: center;
             gap: 32px;
             margin-top: 24px;
         }
@@ -168,23 +193,113 @@
             text-transform: uppercase;
         }
 
+        /* Talks Spotlight & Blog Preview Custom Grid */
+        .talks-spotlight .card-grid,
+        .blog-preview .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .talks-spotlight .card,
+        .blog-preview .card {
+            align-items: center;
+            text-align: center;
+        }
+
+        @media (max-width: 1024px) {
+
+            .talks-spotlight .card-grid,
+            .blog-preview .card-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
+
+            .talks-spotlight .card-grid,
+            .blog-preview .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .talks-spotlight .card:last-child,
+            .blog-preview .card:last-child {
+                grid-column: span 2;
+                width: 100%;
+                max-width: calc(50% - 16px);
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .talks-spotlight .card-grid,
+            .blog-preview .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .talks-spotlight .card:last-child,
+            .blog-preview .card:last-child {
+                grid-column: span 1;
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: clamp(2.2rem, 10vw, 4rem);
+            }
+
+            .orbit-container {
+                width: 320px;
+                height: 320px;
+            }
+
+            .orbit-avatar {
+                width: 100px;
+                height: 100px;
+                padding: 5px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-btns {
+                flex-direction: column;
+                gap: 12px;
+                padding: 0 20px;
+            }
+
+            .hero-btns .btn {
+                width: 100%;
+            }
+
+            .hero-role {
+                font-size: 1rem;
+            }
+
             .case-study-card {
                 flex-direction: column;
             }
-            .case-study-img, .case-study-content {
+
+            .case-study-img,
+            .case-study-content {
                 width: 100%;
             }
         }
     </style>
 </head>
+
 <body>
 
     <!-- Header -->
     <header>
         <div class="container nav-container">
             <a href="index.html" class="logo">DevOrbit<span>◉</span></a>
-            
+
             <nav class="nav-links">
                 <a href="index.html" class="nav-link active">Home</a>
                 <a href="home2.html" class="nav-link">Home 2</a>
@@ -196,10 +311,12 @@
             </nav>
 
             <div class="nav-actions">
-                <button class="icon-btn" id="rtl-toggle" aria-label="Toggle RTL"><i class="ph ph-arrows-left-right"></i></button>
+                <button class="icon-btn" id="rtl-toggle" aria-label="Toggle RTL"><i
+                        class="ph ph-arrows-left-right"></i></button>
                 <button class="icon-btn" id="theme-toggle" aria-label="Toggle Theme"><i class="ph ph-moon"></i></button>
                 <a href="login.html" class="btn btn-primary" style="padding: 8px 20px;">Login</a>
-                <button class="icon-btn hamburger" id="hamburger" aria-label="Open Menu"><i class="ph ph-list"></i></button>
+                <button class="icon-btn hamburger" id="hamburger" aria-label="Open Menu"><i
+                        class="ph ph-list"></i></button>
             </div>
         </div>
     </header>
@@ -216,29 +333,40 @@
             <a href="opensource.html" class="drawer-link">Open Source</a>
             <a href="blog.html" class="drawer-link">Blog</a>
             <a href="contact.html" class="drawer-link">Contact</a>
-            <a href="login.html" class="drawer-link">Login</a>
+            <a href="login.html" class="btn btn-primary drawer-login-btn">Login</a>
         </div>
         <div class="drawer-footer">
-            <button class="btn btn-secondary" id="mobile-theme-toggle" style="width: 100%;"><i class="ph ph-moon"></i> Theme</button>
-            <button class="btn btn-secondary" id="mobile-rtl-toggle" style="width: 100%;"><i class="ph ph-arrows-left-right"></i> RTL</button>
+            <button class="btn btn-secondary" id="mobile-theme-toggle" style="width: 100%;"><i class="ph ph-moon"></i>
+                Theme</button>
+            <button class="btn btn-secondary" id="mobile-rtl-toggle" style="width: 100%;"><i
+                    class="ph ph-arrows-left-right"></i> RTL</button>
         </div>
     </div>
 
     <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="orbit-container">
-                <div class="orbit-planet"></div>
-                <img src="assets/img/devorbit_hero_avatar_1778608375334.png" alt="DevOrbit Avatar" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 150px; height: 150px; border-radius: 50%; border: 2px solid var(--color-accent); padding: 10px; background: var(--bg); z-index: 1;">
+        <section class="hero" style="position: relative;">
+            <!-- Background image -->
+            <div style="position: absolute; inset: 0; z-index: 0;">
+                <img src="assets/img/hero_bg.png" alt=""
+                    style="width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0.7;">
             </div>
-            <div class="container hero-content">
+
+            <!-- Orbit ring only, no avatar -->
+            <div class="orbit-container" style="z-index: 1;">
+                <div class="orbit-planet"></div>
+            </div>
+
+            <div class="container hero-content" style="position: relative; z-index: 2;">
                 <span class="hero-role">
-                    <span id="typewriter" data-words='["DevRel Engineer", "Developer Advocate", "Community Builder", "Open Source Contributor"]'></span><span class="cursor"></span>
+                    <span id="typewriter"
+                        data-words='["DevRel Engineer", "Developer Advocate", "Community Builder", "Open Source Contributor"]'></span><span
+                        class="cursor"></span>
                 </span>
-                <h1 class="hero-title">Centering Your <br> Developer <span style="color: var(--color-accent);">Universe</span></h1>
+                <h1 class="hero-title">Centering Your <br> Developer <span
+                        style="color: var(--color-accent);">Universe</span></h1>
                 <div class="hero-btns">
                     <a href="talks.html" class="btn btn-primary">See My Work</a>
-                    <a href="contact.html" class="btn btn-secondary">Let's Collaborate</a>
+                    <a href="contact.html" class="btn btn-secondary">Collaborate</a>
                 </div>
             </div>
         </section>
@@ -265,51 +393,63 @@
         <!-- What I Do Section -->
         <section class="services">
             <div class="container">
-                <div class="section-layout-split" style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center; margin-bottom: 60px;">
+                <div class="section-layout-split"
+                    style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center; margin-bottom: 60px;">
                     <div class="section-header" style="flex: 1; min-width: 300px; margin-bottom: 0;">
                         <span class="section-subtitle">Core Focus</span>
                         <h2 class="section-title" style="margin-bottom: 0;">What I Do</h2>
-                        <p style="color: var(--text-muted); margin-top: 16px; font-size: 1.1rem;">Empowering developers, building robust communities, and creating the resources needed to drive technical adoption and platform success.</p>
+                        <p style="color: var(--text-muted); margin-top: 16px; font-size: 1.1rem;">Empowering developers,
+                            building robust communities, and creating the resources needed to drive technical adoption
+                            and platform success.</p>
                     </div>
                     <div style="flex: 1; min-width: 300px;">
-                        <img src="assets/img/what_i_do_img.png" alt="Developer Advocacy Illustration" style="width: 100%; height: auto; max-height: 300px; object-fit: cover; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: 4px 4px 0 var(--color-accent);">
+                        <img src="assets/img/what_i_do_img.png" alt="Developer Advocacy Illustration"
+                            style="width: 100%; height: auto; max-height: 300px; object-fit: cover; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: 4px 4px 0 var(--color-accent);">
                     </div>
                 </div>
                 <div class="card-grid">
                     <div class="card">
-                        <i class="ph ph-megaphone card-icon"></i>
+                        <img src="assets/img/card-developer-advocacy.png" alt="Developer Advocacy"
+                            style="height: 180px;">
                         <h3 class="card-title">Developer Advocacy</h3>
-                        <p class="card-text">Bridging the gap between engineering teams and external developers through empathy and clear communication.</p>
+                        <p class="card-text">Bridging the gap between engineering teams and external developers through
+                            empathy and clear communication.</p>
                         <a href="#" class="card-link">Learn More <i class="ph ph-arrow-right"></i></a>
                     </div>
                     <div class="card">
-                        <i class="ph ph-article card-icon"></i>
+                        <img src="assets/img/card-technical-writing.png" alt="Technical Writing" style="height: 180px;">
                         <h3 class="card-title">Technical Writing</h3>
-                        <p class="card-text">Creating documentation, SDK guides, and blog posts that developers actually want to read.</p>
+                        <p class="card-text">Creating documentation, SDK guides, and blog posts that developers actually
+                            want to read.</p>
                         <a href="#" class="card-link">Learn More <i class="ph ph-arrow-right"></i></a>
                     </div>
                     <div class="card">
-                        <i class="ph ph-code card-icon"></i>
+                        <img src="assets/img/card-sdk-tutorials.png" alt="SDK Tutorials" style="height: 180px;">
                         <h3 class="card-title">SDK Tutorials</h3>
-                        <p class="card-text">Building sample apps and step-by-step guides that make integrating your product a breeze.</p>
+                        <p class="card-text">Building sample apps and step-by-step guides that make integrating your
+                            product a breeze.</p>
                         <a href="#" class="card-link">Learn More <i class="ph ph-arrow-right"></i></a>
                     </div>
                     <div class="card">
-                        <i class="ph ph-users-three card-icon"></i>
+                        <img src="assets/img/card-community-programs.png" alt="Community Programs"
+                            style="height: 180px;">
                         <h3 class="card-title">Community Programs</h3>
-                        <p class="card-text">Designing and leading ambassador programs that foster genuine engagement and loyalty.</p>
+                        <p class="card-text">Designing and leading ambassador programs that foster genuine engagement
+                            and loyalty.</p>
                         <a href="#" class="card-link">Learn More <i class="ph ph-arrow-right"></i></a>
                     </div>
                     <div class="card">
-                        <i class="ph ph-microphone-stage card-icon"></i>
+                        <img src="assets/img/card-conference-talks.png" alt="Conference Talks" style="height: 180px;">
                         <h3 class="card-title">Conference Talks</h3>
-                        <p class="card-text">Delivering high-impact keynotes and technical workshops at leading industry events.</p>
+                        <p class="card-text">Delivering high-impact keynotes and technical workshops at leading industry
+                            events.</p>
                         <a href="#" class="card-link">Learn More <i class="ph ph-arrow-right"></i></a>
                     </div>
                     <div class="card">
-                        <i class="ph ph-git-branch card-icon"></i>
+                        <img src="assets/img/card-oss-contributions.png" alt="OSS Contributions" style="height: 180px;">
                         <h3 class="card-title">OSS Contributions</h3>
-                        <p class="card-text">Maintaining and contributing to open-source projects to drive innovation and collaboration.</p>
+                        <p class="card-text">Maintaining and contributing to open-source projects to drive innovation
+                            and collaboration.</p>
                         <a href="#" class="card-link">Learn More <i class="ph ph-arrow-right"></i></a>
                     </div>
                 </div>
@@ -319,33 +459,43 @@
         <!-- Talks Spotlight -->
         <section class="talks-spotlight" style="background-color: var(--bg-surface);">
             <div class="container">
-                <div class="section-layout-split" style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center; margin-bottom: 60px; flex-direction: row-reverse;">
+                <div class="section-layout-split"
+                    style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center; margin-bottom: 60px; flex-direction: row-reverse;">
                     <div class="section-header" style="flex: 1; min-width: 300px; margin-bottom: 0;">
                         <span class="section-subtitle">On Stage</span>
-                        <h2 class="section-title" style="margin-bottom: 0;">Talks Spotlight</h2>
-                        <p style="color: var(--text-muted); margin-top: 16px; font-size: 1.1rem;">Sharing insights on developer experience, SDK design, and sustainable open-source community building at leading industry events worldwide.</p>
+                        <h2 class="section-title" style="margin-bottom: 0;">Talks Spot</h2>
+                        <p style="color: var(--text-muted); margin-top: 16px; font-size: 1.1rem;">Sharing insights on
+                            developer experience, SDK design, and sustainable open-source community building at leading
+                            industry events worldwide.</p>
                     </div>
                     <div style="flex: 1; min-width: 300px;">
-                        <img src="assets/img/talks_spotlight_img.png" alt="Speaking on Stage Illustration" style="width: 100%; height: auto; max-height: 300px; object-fit: cover; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: -4px 4px 0 var(--color-accent);">
+                        <img src="assets/img/talks_spotlight_img.png" alt="Speaking on Stage Illustration"
+                            style="width: 100%; height: auto; max-height: 300px; object-fit: cover; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: -4px 4px 0 var(--color-accent);">
                     </div>
                 </div>
                 <div class="card-grid">
                     <div class="card">
-                        <span class="section-subtitle" style="font-size: 0.7rem; margin-bottom: 8px;">KubeCon 2024 • Keynote</span>
+                        <span class="section-subtitle" style="font-size: 0.7rem; margin-bottom: 8px;">KubeCon 2024 •
+                            Keynote</span>
                         <h3 class="card-title">The Future of DevEx in a Cloud Native World</h3>
-                        <p class="card-text">Exploring how developer experience is evolving as platforms become more complex and distributed.</p>
+                        <p class="card-text">Exploring how developer experience is evolving as platforms become more
+                            complex and distributed.</p>
                         <a href="talks.html" class="card-link">Watch Talk <i class="ph ph-play-circle"></i></a>
                     </div>
                     <div class="card">
-                        <span class="section-subtitle" style="font-size: 0.7rem; margin-bottom: 8px;">DevRelCon • Workshop</span>
+                        <span class="section-subtitle" style="font-size: 0.7rem; margin-bottom: 8px;">DevRelCon •
+                            Workshop</span>
                         <h3 class="card-title">Building SDKs That Developers Love</h3>
-                        <p class="card-text">A deep dive into the patterns and practices that make for a world-class SDK experience.</p>
+                        <p class="card-text">A deep dive into the patterns and practices that make for a world-class SDK
+                            experience.</p>
                         <a href="talks.html" class="card-link">See Slides <i class="ph ph-presentation"></i></a>
                     </div>
                     <div class="card">
-                        <span class="section-subtitle" style="font-size: 0.7rem; margin-bottom: 8px;">JSConf EU • Panel</span>
+                        <span class="section-subtitle" style="font-size: 0.7rem; margin-bottom: 8px;">JSConf EU •
+                            Panel</span>
                         <h3 class="card-title">Open Source Sustainability</h3>
-                        <p class="card-text">Discussing the challenges and opportunities in maintaining healthy OSS ecosystems.</p>
+                        <p class="card-text">Discussing the challenges and opportunities in maintaining healthy OSS
+                            ecosystems.</p>
                         <a href="talks.html" class="card-link">View Panel <i class="ph ph-users-three"></i></a>
                     </div>
                 </div>
@@ -362,13 +512,15 @@
                     <span class="section-subtitle">Impact</span>
                     <h2 class="section-title">Case Studies</h2>
                 </div>
-                
+
                 <div class="case-study-card">
                     <img src="assets/img/case_study_community.png" alt="Community Growth" class="case-study-img">
                     <div class="case-study-content">
-                        <span class="section-subtitle" style="font-size: 0.7rem; margin-bottom: 8px;">Scale-Up SaaS</span>
+                        <span class="section-subtitle" style="font-size: 0.7rem; margin-bottom: 8px;">Scale-Up
+                            SaaS</span>
                         <h3 class="card-title">Driving 300% Community Growth in 6 Months</h3>
-                        <p class="card-text">Implemented a comprehensive developer engagement strategy focusing on Discord community building and technical workshops.</p>
+                        <p class="card-text">Implemented a comprehensive developer engagement strategy focusing on
+                            Discord community building and technical workshops.</p>
                         <div class="case-study-stats">
                             <div class="stat-item">
                                 <span class="stat-value">+2,400</span>
@@ -385,9 +537,11 @@
                 <div class="case-study-card">
                     <img src="assets/img/case_study_sdk.png" alt="SDK Launch" class="case-study-img">
                     <div class="case-study-content">
-                        <span class="section-subtitle" style="font-size: 0.7rem; margin-bottom: 8px;">InfraTech Inc.</span>
+                        <span class="section-subtitle" style="font-size: 0.7rem; margin-bottom: 8px;">InfraTech
+                            Inc.</span>
                         <h3 class="card-title">Launching the Next-Gen TypeScript SDK</h3>
-                        <p class="card-text">Led the technical design, documentation, and launch campaign for a new SDK, reducing onboarding time by 50%.</p>
+                        <p class="card-text">Led the technical design, documentation, and launch campaign for a new SDK,
+                            reducing onboarding time by 50%.</p>
                         <div class="case-study-stats">
                             <div class="stat-item">
                                 <span class="stat-value">3</span>
@@ -412,21 +566,27 @@
                 </div>
                 <div class="card-grid">
                     <div class="card">
-                        <span class="section-subtitle" style="font-size: 0.7rem; margin-bottom: 8px;">May 10, 2024 • 5 min read</span>
+                        <span class="section-subtitle" style="font-size: 0.7rem; margin-bottom: 8px;">May 10, 2024 • 5
+                            min read</span>
                         <h3 class="card-title">Why Documentation is Your Best DevRel Tool</h3>
-                        <p class="card-text">How high-quality docs can do more for your community than any marketing campaign ever could.</p>
+                        <p class="card-text">How high-quality docs can do more for your community than any marketing
+                            campaign ever could.</p>
                         <a href="blog-single.html" class="card-link">Read More <i class="ph ph-arrow-right"></i></a>
                     </div>
                     <div class="card">
-                        <span class="section-subtitle" style="font-size: 0.7rem; margin-bottom: 8px;">May 02, 2024 • 8 min read</span>
+                        <span class="section-subtitle" style="font-size: 0.7rem; margin-bottom: 8px;">May 02, 2024 • 8
+                            min read</span>
                         <h3 class="card-title">The Art of the Technical Keynote</h3>
-                        <p class="card-text">Tips and tricks for delivering a presentation that resonates with developers and inspires action.</p>
+                        <p class="card-text">Tips and tricks for delivering a presentation that resonates with
+                            developers and inspires action.</p>
                         <a href="blog-single.html" class="card-link">Read More <i class="ph ph-arrow-right"></i></a>
                     </div>
                     <div class="card">
-                        <span class="section-subtitle" style="font-size: 0.7rem; margin-bottom: 8px;">Apr 25, 2024 • 12 min read</span>
+                        <span class="section-subtitle" style="font-size: 0.7rem; margin-bottom: 8px;">Apr 25, 2024 • 12
+                            min read</span>
                         <h3 class="card-title">Building in Public: An OSS Guide</h3>
-                        <p class="card-text">Navigating the transparency and challenges of maintaining a public open-source project.</p>
+                        <p class="card-text">Navigating the transparency and challenges of maintaining a public
+                            open-source project.</p>
                         <a href="blog-single.html" class="card-link">Read More <i class="ph ph-arrow-right"></i></a>
                     </div>
                 </div>
@@ -437,7 +597,8 @@
         <section class="cta-section" style="padding: 120px 0; text-align: center;">
             <div class="container">
                 <h2 class="section-title" style="margin-bottom: 40px;">Let's Build Something <br> for Developers</h2>
-                <a href="contact.html" class="btn btn-primary" style="padding: 20px 40px; font-size: 1.1rem;">Start a Conversation</a>
+                <a href="contact.html" class="btn btn-primary" style="padding: 20px 40px; font-size: 1.1rem;">Start a
+                    Conversation</a>
             </div>
         </section>
     </main>
@@ -448,7 +609,8 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="index.html" class="logo">DevOrbit<span>◉</span></a>
-                    <p class="footer-text">A developer advocate at the center of a gravitational ecosystem of communities, tools, and content.</p>
+                    <p class="footer-text">A developer advocate at the center of a gravitational ecosystem of
+                        communities, tools, and content.</p>
                 </div>
                 <div>
                     <h4 class="footer-heading">Navigation</h4>
@@ -480,11 +642,12 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="copyright">© 2025 DevOrbit. Built for developers, by a developer.</p>
+                <p class="copyright">© 2026 DevOrbit. Built for developers, by a developer.</p>
             </div>
         </div>
     </footer>
 
     <script src="assets/js/main.js"></script>
 </body>
+
 </html>

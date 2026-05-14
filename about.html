@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/rtl.css">
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
     <style>
         .about-hero {
             padding-top: calc(var(--header-height) + 60px);
@@ -14,6 +16,13 @@
             grid-template-columns: 1fr 1fr;
             gap: 80px;
             align-items: center;
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
         .about-img-wrapper {
@@ -116,16 +125,132 @@
         }
 
         @media (max-width: 1024px) {
-            .about-hero { grid-template-columns: 1fr; gap: 40px; }
-            .timeline::before { left: 20px; }
-            .timeline-dot { left: 20px; }
-            .timeline-item { flex-direction: column !important; align-items: flex-start; padding-left: 50px; }
-            .timeline-content, .timeline-date { width: 100%; text-align: left !important; }
-            .timeline-date { margin-bottom: 12px; }
-            .values-grid { grid-template-columns: 1fr; }
+            .about-hero {
+                gap: 40px;
+            }
+
+            .hero-title {
+                font-size: clamp(2.5rem, 10vw, 4rem) !important;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+                align-items: flex-start;
+                padding-left: 50px;
+            }
+
+            .timeline-content,
+            .timeline-date {
+                width: 100%;
+                text-align: left !important;
+            }
+
+            .timeline-date {
+                margin-bottom: 12px;
+            }
+        }
+
+        .field-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .field-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .field-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 991px) {
+            .about-hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-content {
+                text-align: center;
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .values-grid .card:last-child {
+                grid-column: span 2;
+                justify-self: center;
+                width: 100%;
+                max-width: calc(50% - 16px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.2rem !important;
+            }
+
+            .about-content {
+                text-align: center;
+            }
+
+            .bio-text {
+                font-size: 1rem;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .values-grid .card:last-child {
+                grid-column: span 1;
+                max-width: 100%;
+            }
+
+            /* In the Field Mobile Stacking */
+            .field-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .field-image-wrapper {
+                order: 2;
+            }
+
+            .field-content {
+                order: 1;
+                text-align: center;
+            }
+
+            .field-stats {
+                justify-content: center;
+                gap: 20px !important;
+            }
         }
     </style>
 </head>
+
 <body>
     <!-- Header -->
     <header>
@@ -149,18 +274,44 @@
         </div>
     </header>
 
+    <!-- Mobile Drawer -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <div class="drawer" id="drawer">
+        <button class="icon-btn drawer-close" id="drawer-close"><i class="ph ph-x"></i></button>
+        <div class="drawer-links">
+            <a href="index.html" class="drawer-link">Home</a>
+            <a href="home2.html" class="drawer-link">Home 2</a>
+            <a href="about.html" class="drawer-link">About</a>
+            <a href="talks.html" class="drawer-link">Talks</a>
+            <a href="opensource.html" class="drawer-link">Open Source</a>
+            <a href="blog.html" class="drawer-link">Blog</a>
+            <a href="contact.html" class="drawer-link">Contact</a>
+            <a href="login.html" class="btn btn-primary drawer-login-btn">Login</a>
+        </div>
+        <div class="drawer-footer">
+            <button class="btn btn-secondary" id="mobile-theme-toggle" style="width: 100%;"><i class="ph ph-moon"></i>
+                Theme</button>
+            <button class="btn btn-secondary" id="mobile-rtl-toggle" style="width: 100%;"><i
+                    class="ph ph-arrows-left-right"></i> RTL</button>
+        </div>
+    </div>
+
     <main>
         <div class="container">
             <section class="about-hero">
                 <div class="about-img-wrapper">
-                    <img src="assets/img/devorbit_community_illustration_1778608664067.png" alt="DevOrbit Community" class="about-img">
+                    <img src="assets/img/devorbit_community_illustration_1778608664067.png" alt="DevOrbit Community"
+                        class="about-img">
                     <div class="about-img-frame"></div>
                 </div>
                 <div class="about-content">
                     <span class="section-subtitle">The Journey</span>
-                    <h1 class="hero-title" style="font-size: 4rem;">I'm DevOrbit</h1>
-                    <p class="bio-text">Freelance DevRel & Developer Advocate helping tech companies build better products for developers. With over 10 years of experience in engineering and community building, I bridge the gap between code and people.</p>
-                    <p class="bio-text">I believe that great developer experience (DevEx) isn't just about good APIs—it's about empathy, education, and empowering developers to do their best work.</p>
+                    <h1 class="hero-title">I'm DevOrbit</h1>
+                    <p class="bio-text">Freelance DevRel & Developer Advocate helping tech companies build better
+                        products for developers. With over 10 years of experience in engineering and community building,
+                        I bridge the gap between code and people.</p>
+                    <p class="bio-text">I believe that great developer experience (DevEx) isn't just about good
+                        APIs—it's about empathy, education, and empowering developers to do their best work.</p>
                     <a href="#" class="btn btn-primary">Download Resume <i class="ph ph-download-simple"></i></a>
                 </div>
             </section>
@@ -170,7 +321,7 @@
             <div class="container">
                 <div class="section-header">
                     <span class="section-subtitle">Experience</span>
-                    <h2 class="section-title">Milestones</h2>
+                    <h2 class="section-title">Milestone</h2>
                 </div>
                 <div class="timeline">
                     <div class="timeline-item">
@@ -178,7 +329,8 @@
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
                             <h3>Lead Developer Advocate</h3>
-                            <p>Helping Scale-Up SaaS companies define their DevRel strategy and build thriving developer communities.</p>
+                            <p>Helping Scale-Up SaaS companies define their DevRel strategy and build thriving developer
+                                communities.</p>
                         </div>
                     </div>
                     <div class="timeline-item">
@@ -194,7 +346,58 @@
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
                             <h3>Full Stack Engineer</h3>
-                            <p>Built core infrastructure for cloud-native platforms while contributing to internal DevRel initiatives.</p>
+                            <p>Built core infrastructure for cloud-native platforms while contributing to internal
+                                DevRel initiatives.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- In The Field -->
+        <section class="in-the-field" style="padding: 120px 0;">
+            <div class="container">
+                <div class="field-grid">
+                    <div class="field-content">
+                        <span class="section-subtitle">In The Field</span>
+                        <h2 class="section-title" style="margin-bottom: 24px;">Where Work <br>Meets Impact</h2>
+                        <p class="bio-text">From conference stages to community Discord servers, my work happens
+                            everywhere developers gather. I show up, listen, and help teams build things developers
+                            actually love.</p>
+                        <p class="bio-text">The best DevRel isn't a job title — it's a mindset that puts developer
+                            success at the center of every decision.</p>
+                        <div class="field-stats">
+                            <div>
+                                <div
+                                    style="font-family: var(--font-mono); font-size: 2rem; font-weight: 700; color: var(--color-accent);">
+                                    8+</div>
+                                <div
+                                    style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em;">
+                                    Countries</div>
+                            </div>
+                            <div>
+                                <div
+                                    style="font-family: var(--font-mono); font-size: 2rem; font-weight: 700; color: var(--color-accent);">
+                                    12+</div>
+                                <div
+                                    style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em;">
+                                    Conferences</div>
+                            </div>
+                            <div>
+                                <div
+                                    style="font-family: var(--font-mono); font-size: 2rem; font-weight: 700; color: var(--color-accent);">
+                                    3K+</div>
+                                <div
+                                    style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em;">
+                                    Community</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field-image-wrapper" style="position: relative;">
+                        <img src="assets/img/about_infield.png" alt="In The Field"
+                            style="width: 100%; height: auto; max-height: 500px; object-fit: cover; border-radius: var(--radius); border: 1px solid var(--border);">
+                        <div
+                            style="position: absolute; bottom: -16px; left: -16px; background: var(--color-accent); color: #000; padding: 16px 24px; border-radius: var(--radius); font-family: var(--font-mono); font-weight: 700; font-size: 0.8rem; text-transform: uppercase;">
+                            10+ Years in Tech
                         </div>
                     </div>
                 </div>
@@ -211,17 +414,20 @@
                     <div class="card">
                         <i class="ph ph-heart card-icon"></i>
                         <h3 class="card-title">Empathy-First</h3>
-                        <p class="card-text">Every line of documentation and every sample app should be built with the developer's journey in mind.</p>
+                        <p class="card-text">Every line of documentation and every sample app should be built with the
+                            developer's journey in mind.</p>
                     </div>
                     <div class="card">
                         <i class="ph ph-users card-icon"></i>
                         <h3 class="card-title">Community Over Code</h3>
-                        <p class="card-text">Strong communities drive better products. I prioritize building genuine connections over transactional metrics.</p>
+                        <p class="card-text">Strong communities drive better products. I prioritize building genuine
+                            connections over transactional metrics.</p>
                     </div>
                     <div class="card">
                         <i class="ph ph-graduation-cap card-icon"></i>
                         <h3 class="card-title">Teach to Learn</h3>
-                        <p class="card-text">The best way to master a technology is to teach it to others. I'm constantly learning through advocacy.</p>
+                        <p class="card-text">The best way to master a technology is to teach it to others. I'm
+                            constantly learning through advocacy.</p>
                     </div>
                 </div>
             </div>
@@ -234,7 +440,8 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="index.html" class="logo">DevOrbit<span>◉</span></a>
-                    <p class="footer-text">A developer advocate at the center of a gravitational ecosystem of communities, tools, and content.</p>
+                    <p class="footer-text">A developer advocate at the center of a gravitational ecosystem of
+                        communities, tools, and content.</p>
                 </div>
                 <div>
                     <h4 class="footer-heading">Navigation</h4>
@@ -266,11 +473,13 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="copyright">© 2025 DevOrbit. Built for developers, by a developer.</p>
+                <p class="copyright">© 2026 DevOrbit. Built for developers, by a developer.</p>
             </div>
         </div>
     </footer>
 
+
     <script src="assets/js/main.js"></script>
 </body>
+
 </html>

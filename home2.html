@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/rtl.css">
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
     <style>
         .hero-v2 {
             min-height: 100vh;
@@ -14,18 +16,21 @@
             align-items: center;
             padding-top: var(--header-height);
         }
-        
+
         .hero-v2-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
+            text-align: center;
         }
 
         .hero-v2-title {
             font-size: clamp(4rem, 10vw, 8rem);
             line-height: 0.8;
             text-transform: uppercase;
+            color: #FFFFFF;
+            text-align: center;
         }
 
         .hero-v2-right {
@@ -38,17 +43,29 @@
             border: 1px solid var(--border);
             padding: 30px;
             border-radius: var(--radius);
+            text-align: center;
             transform: translateY(30px);
             opacity: 0;
             animation: slideUp 0.6s forwards;
         }
 
-        .hero-card:nth-child(1) { animation-delay: 0.2s; }
-        .hero-card:nth-child(2) { animation-delay: 0.4s; }
-        .hero-card:nth-child(3) { animation-delay: 0.6s; }
+        .hero-card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .hero-card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .hero-card:nth-child(3) {
+            animation-delay: 0.6s;
+        }
 
         @keyframes slideUp {
-            to { transform: translateY(0); opacity: 1; }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .stat-pills {
@@ -58,7 +75,7 @@
             padding: 40px 0;
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
-            margin: 60px 0;
+            margin: 60px 0 20px;
         }
 
         .stat-pill {
@@ -71,6 +88,10 @@
             font-size: 0.9rem;
         }
 
+        .asymmetric-showcase {
+            padding: 40px 0 100px;
+        }
+
         .asymmetric-grid {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
@@ -78,11 +99,16 @@
         }
 
         .grid-item {
-            grid-column: span 6;
+            grid-column: span 4;
         }
 
-        .grid-item.large { grid-column: span 8; }
-        .grid-item.small { grid-column: span 4; }
+        .grid-item.large {
+            grid-column: span 4;
+        }
+
+        .grid-item.small {
+            grid-column: span 4;
+        }
 
         .github-graph {
             background: var(--bg-surface);
@@ -104,16 +130,131 @@
             border-radius: 2px;
         }
 
-        .graph-cell.active { background: var(--color-accent); }
-        .graph-cell.mid { background: rgba(0, 255, 148, 0.5); }
-        .graph-cell.low { background: rgba(0, 255, 148, 0.2); }
+        .graph-cell.active {
+            background: var(--color-accent);
+        }
 
-        @media (max-width: 1024px) {
-            .hero-v2-grid { grid-template-columns: 1fr; }
-            .grid-item { grid-column: span 12 !important; }
+        .graph-cell.mid {
+            background: rgba(0, 255, 148, 0.5);
+        }
+
+        .graph-cell.low {
+            background: rgba(0, 255, 148, 0.2);
+        }
+
+        .split-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            text-align: center;
+        }
+
+        .split-section>div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .working-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            text-align: center;
+        }
+
+        .working-card {
+            padding: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(8px);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .working-card:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        @media (max-width: 768px) {
+            .hero-v2-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .grid-item,
+            .grid-item.large,
+            .grid-item.small {
+                grid-column: span 6 !important;
+            }
+
+            .hero-v2-title {
+                font-size: clamp(2.5rem, 12vw, 5rem);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-v2-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-card {
+                padding: 20px;
+            }
+
+            .stat-pill {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+
+            .grid-item,
+            .grid-item.large,
+            .grid-item.small {
+                grid-column: span 12 !important;
+            }
+
+            .split-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .split-section>div {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .working-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .working-grid>div:last-child {
+                grid-column: span 2;
+                justify-self: center;
+                width: 100%;
+                max-width: calc(50% - 12px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .working-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .working-grid>div:last-child {
+                grid-column: span 1;
+                max-width: 100%;
+            }
         }
     </style>
 </head>
+
 <body>
     <!-- Header (Same as index.html) -->
     <header>
@@ -149,20 +290,37 @@
             <a href="opensource.html" class="drawer-link">Open Source</a>
             <a href="blog.html" class="drawer-link">Blog</a>
             <a href="contact.html" class="drawer-link">Contact</a>
-            <a href="login.html" class="drawer-link">Login</a>
+            <a href="login.html" class="btn btn-primary drawer-login-btn">Login</a>
         </div>
         <div class="drawer-footer">
-            <button class="btn btn-secondary" id="mobile-theme-toggle" style="width: 100%;"><i class="ph ph-moon"></i> Theme</button>
-            <button class="btn btn-secondary" id="mobile-rtl-toggle" style="width: 100%;"><i class="ph ph-arrows-left-right"></i> RTL</button>
+            <button class="btn btn-secondary" id="mobile-theme-toggle" style="width: 100%;"><i class="ph ph-moon"></i>
+                Theme</button>
+            <button class="btn btn-secondary" id="mobile-rtl-toggle" style="width: 100%;"><i
+                    class="ph ph-arrows-left-right"></i> RTL</button>
         </div>
     </div>
 
     <main>
-        <section class="hero-v2">
-            <div class="container">
+        <section class="hero-v2" style="
+    background-image: url('assets/img/hero_v2_bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;">
+
+            <!-- dark overlay so text stays readable -->
+            <div style="
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.55);
+        z-index: 0;">
+            </div>
+
+            <div class="container" style="position: relative; z-index: 1;">
                 <div class="hero-v2-grid">
                     <div class="hero-v2-left">
-                        <h1 class="hero-v2-title">BUILD <br> FOR <br> <span style="color: var(--color-accent);">DEVS</span></h1>
+                        <h1 class="hero-v2-title">BUILD <br> FOR <br> <span
+                                style="color: var(--color-accent);">DEVS</span></h1>
                     </div>
                     <div class="hero-v2-right">
                         <div class="hero-card">
@@ -191,8 +349,12 @@
                     <div class="stat-pill"><span data-count="12">0</span> CONFERENCES</div>
                     <div class="stat-pill"><span data-count="48">0</span> BLOG POSTS</div>
                     <div class="stat-pill"><span data-count="6">0</span> OSS PROJECTS</div>
-                    <div class="stat-pill"><span data-count="3000" data-suffix="+">0</span> COMMUNITY MEMBERS</div>
+                    <div class="stat-pill"><span data-count="3000" data-suffix="+">0</span> MEMBERS</div>
                     <div class="stat-pill"><span data-count="150" data-suffix="+">0</span> WORKSHOPS</div>
+                    <div class="stat-pill"><span data-count="8">0</span> COUNTRIES</div>
+                    <div class="stat-pill"><span data-count="1200" data-suffix="+">0</span> GITHUB STARS</div>
+                    <div class="stat-pill"><span data-count="25" data-suffix="+">0</span> SDK INTEGRATIONS</div>
+                    <div class="stat-pill"><span data-count="500" data-suffix="+">0</span> YOUTUBE SUBS</div>
                 </div>
             </div>
         </section>
@@ -204,29 +366,68 @@
                     <h2 class="section-title">Technical Content</h2>
                 </div>
                 <div class="asymmetric-grid">
-                    <div class="grid-item large card">
-                        <i class="ph ph-presentation card-icon"></i>
-                        <h3 class="card-title">Keynote: The API Economy</h3>
-                        <p class="card-text">A strategic overview of how APIs are shaping the modern technical landscape.</p>
-                        <a href="talks.html" class="card-link">View Details</a>
+                    <div class="grid-item large card" style="padding: 0; overflow: hidden;">
+                        <img src="assets/img/showcase_keynote.png" alt="Keynote: The API Economy"
+                            style="width: 100%; height: 220px; object-fit: cover;">
+                        <div style="padding: 32px; display: flex; flex-direction: column; flex: 1;">
+                            <h3 class="card-title">Keynote: The API Economy</h3>
+                            <p class="card-text" style="flex-grow: 1;">A strategic overview of how APIs are shaping the
+                                modern technical landscape.</p>
+                            <a href="talks.html" class="card-link">View Details <i class="ph ph-arrow-right"></i></a>
+                        </div>
                     </div>
-                    <div class="grid-item small card">
-                        <i class="ph ph-book-open card-icon"></i>
-                        <h3 class="card-title">SDK Guide</h3>
-                        <p class="card-text">Comprehensive guide for TypeScript developers.</p>
-                        <a href="blog.html" class="card-link">Read Guide</a>
+                    <div class="grid-item small card" style="padding: 0; overflow: hidden;">
+                        <img src="assets/img/showcase_sdk_guide.png" alt="SDK Guide"
+                            style="width: 100%; height: 220px; object-fit: cover;">
+                        <div style="padding: 32px; display: flex; flex-direction: column; flex: 1;">
+                            <h3 class="card-title">SDK Guide</h3>
+                            <p class="card-text" style="flex-grow: 1;">Comprehensive guide for TypeScript developers.
+                            </p>
+                            <a href="blog.html" class="card-link">Read Guide <i class="ph ph-arrow-right"></i></a>
+                        </div>
                     </div>
-                    <div class="grid-item small card">
-                        <i class="ph ph-microphone card-icon"></i>
-                        <h3 class="card-title">Podcast Guest</h3>
-                        <p class="card-text">Talking about DevRel on the "Code & Coffee" podcast.</p>
-                        <a href="#" class="card-link">Listen Now</a>
+                    <div class="grid-item small card" style="padding: 0; overflow: hidden;">
+                        <img src="assets/img/showcase_podcast.png" alt="Podcast Guest"
+                            style="width: 100%; height: 220px; object-fit: cover;">
+                        <div style="padding: 32px; display: flex; flex-direction: column; flex: 1;">
+                            <h3 class="card-title">Podcast Guest</h3>
+                            <p class="card-text" style="flex-grow: 1;">Talking about DevRel on the "Code & Coffee"
+                                podcast.</p>
+                            <a href="#" class="card-link">Listen Now <i class="ph ph-arrow-right"></i></a>
+                        </div>
                     </div>
-                    <div class="grid-item large card">
-                        <i class="ph ph-code card-icon"></i>
-                        <h3 class="card-title">Open Source Tooling</h3>
-                        <p class="card-text">Building CLI tools that simplify developer workflows and improve productivity across teams.</p>
-                        <a href="opensource.html" class="card-link">Explore Repos</a>
+                    <div class="grid-item large card" style="padding: 0; overflow: hidden;">
+                        <img src="assets/img/showcase_oss.png" alt="Open Source Tooling"
+                            style="width: 100%; height: 220px; object-fit: cover;">
+                        <div style="padding: 32px; display: flex; flex-direction: column; flex: 1;">
+                            <h3 class="card-title">Open Source Tooling</h3>
+                            <p class="card-text" style="flex-grow: 1;">Building CLI tools that simplify developer
+                                workflows and improve productivity across teams.</p>
+                            <a href="opensource.html" class="card-link">Explore Repos <i
+                                    class="ph ph-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- New Card 5 -->
+                    <div class="grid-item large card" style="padding: 0; overflow: hidden;">
+                        <img src="assets/img/showcase_workshop.png" alt="Live Workshop"
+                            style="width: 100%; height: 220px; object-fit: cover;">
+                        <div style="padding: 32px; display: flex; flex-direction: column; flex: 1;">
+                            <h3 class="card-title">Live Workshop: API Design</h3>
+                            <p class="card-text" style="flex-grow: 1;">Hands-on session walking developers through
+                                designing developer-friendly REST and GraphQL APIs from scratch.</p>
+                            <a href="talks.html" class="card-link">View Workshop <i class="ph ph-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- New Card 6 -->
+                    <div class="grid-item small card" style="padding: 0; overflow: hidden;">
+                        <img src="assets/img/showcase_newsletter.png" alt="Developer Newsletter"
+                            style="width: 100%; height: 220px; object-fit: cover;">
+                        <div style="padding: 32px; display: flex; flex-direction: column; flex: 1;">
+                            <h3 class="card-title">Developer Newsletter</h3>
+                            <p class="card-text" style="flex-grow: 1;">Weekly DevRel insights, curated resources, and
+                                community highlights delivered to 2,000+ subscribers.</p>
+                            <a href="#" class="card-link">Subscribe <i class="ph ph-arrow-right"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -245,14 +446,106 @@
             </div>
         </section>
 
+        <!-- Behind the Scenes -->
+        <section style="padding: 120px 0;">
+            <div class="container">
+                <div class="split-section">
+                    <div style="position: relative;">
+                        <img src="assets/img/home2_portrait.png" alt="Behind the scenes"
+                            style="width: 100%; height: 520px; object-fit: cover; border-radius: var(--radius); border: 1px solid var(--border);">
+                        <div
+                            style="position: absolute; bottom: -20px; right: -20px; background: var(--color-accent); color: #000; padding: 20px 28px; border-radius: var(--radius); font-family: var(--font-mono); font-weight: 700; font-size: 0.85rem;">
+                            5+ YRS IN DEVREL
+                        </div>
+                    </div>
+                    <div>
+                        <span class="section-subtitle">The Person Behind the Code</span>
+                        <h2 class="section-title" style="margin-bottom: 24px;">Passion Meets <br>Technical Depth</h2>
+                        <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 32px; line-height: 1.8;">
+                            I'm a developer advocate who believes empathy is the most underrated engineering skill.
+                            I spend my days building bridges between products and the developers who use them —
+                            through writing, talking, coding, and listening.
+                        </p>
+                        <div style="display: flex; flex-direction: column; gap: 16px;">
+                            <div
+                                style="display: flex; align-items: center; gap: 16px; padding: 16px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius);">
+                                <i class="ph ph-map-pin" style="color: var(--color-accent); font-size: 1.4rem;"></i>
+                                <span>Based remotely, available globally</span>
+                            </div>
+                            <div
+                                style="display: flex; align-items: center; gap: 16px; padding: 16px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius);">
+                                <i class="ph ph-coffee" style="color: var(--color-accent); font-size: 1.4rem;"></i>
+                                <span>Fuelled by good coffee </span>
+                            </div>
+                            <div
+                                style="display: flex; align-items: center; gap: 16px; padding: 16px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius);">
+                                <i class="ph ph-globe" style="color: var(--color-accent); font-size: 1.4rem;"></i>
+                                <span>Spoken at events across 8 countries</span>
+                            </div>
+                        </div>
+                        <a href="about.html" class="btn btn-primary" style="margin-top: 32px;">More About Me</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Currently Working On -->
+        <section style="padding: 120px 0; position: relative; overflow: hidden;">
+            <div style="
+        position: absolute; inset: 0;
+        background-image: url('assets/img/home2_working_bg.png');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        z-index: 0;">
+            </div>
+            <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.72); z-index: 1;"></div>
+            <div class="container" style="position: relative; z-index: 2;">
+                <div class="section-header">
+
+                    <h2 class="section-title" style="color: #fff; margin-bottom: 48px;">Currently Working On</h2>
+                </div>
+                <div class="working-grid">
+                    <div class="working-card">
+                        <i class="ph ph-pencil-line"
+                            style="font-size: 2rem; color: var(--color-accent); margin-bottom: 16px; display: block;"></i>
+                        <h4 style="color: #fff; font-family: var(--font-display); margin-bottom: 8px;">Writing a DevRel
+                            Playbook</h4>
+                        <p style="color: rgba(255,255,255,0.55); font-size: 0.9rem;">A comprehensive open-source guide
+                            for first-time developer advocates.</p>
+                    </div>
+                    <div class="working-card">
+                        <i class="ph ph-code-block"
+                            style="font-size: 2rem; color: var(--color-accent); margin-bottom: 16px; display: block;"></i>
+                        <h4 style="color: #fff; font-family: var(--font-display); margin-bottom: 8px;">Building a CLI
+                            Toolkit</h4>
+                        <p style="color: rgba(255,255,255,0.55); font-size: 0.9rem;">An open-source CLI that simplifies
+                            SDK scaffolding for developer teams.</p>
+                    </div>
+                    <div class="working-card">
+                        <i class="ph ph-microphone-stage"
+                            style="font-size: 2rem; color: var(--color-accent); margin-bottom: 16px; display: block;"></i>
+                        <h4 style="color: #fff; font-family: var(--font-display); margin-bottom: 8px;">Preparing for
+                            DevRelCon</h4>
+                        <p style="color: rgba(255,255,255,0.55); font-size: 0.9rem;">Crafting a talk on measuring
+                            long-term community health with data.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
         <section class="newsletter" style="padding: 120px 0;">
             <div class="container" style="max-width: 600px; text-align: center;">
                 <h2 class="section-title">Stay In Orbit</h2>
-                <p style="color: var(--text-muted); margin-bottom: 32px;">Get the latest dispatches on DevRel, community building, and technical content delivered straight to your inbox.</p>
+                <p style="color: var(--text-muted); margin-bottom: 32px;">Get the latest dispatches on DevRel, community
+                    building, and technical content delivered straight to your inbox.</p>
                 <form class="contact-form" data-validate style="display: flex; gap: 12px;">
-                    <input type="email" required placeholder="Enter your email" style="flex-grow: 1; padding: 12px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--bg-surface); color: var(--text);">
+                    <input type="email" required placeholder="Enter your email"
+                        style="flex-grow: 1; padding: 12px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--bg-surface); color: var(--text);">
                     <button type="submit" class="btn btn-primary">Subscribe</button>
-                    <p class="success-msg" style="display: none; color: var(--color-accent); margin-top: 12px;">Subscribed! Welcome to the orbit.</p>
+                    <p class="success-msg" style="display: none; color: var(--color-accent); margin-top: 12px;">
+                        Subscribed! Welcome to the orbit.</p>
                 </form>
             </div>
         </section>
@@ -264,7 +557,8 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="index.html" class="logo">DevOrbit<span>◉</span></a>
-                    <p class="footer-text">A developer advocate at the center of a gravitational ecosystem of communities, tools, and content.</p>
+                    <p class="footer-text">A developer advocate at the center of a gravitational ecosystem of
+                        communities, tools, and content.</p>
                 </div>
                 <div>
                     <h4 class="footer-heading">Navigation</h4>
@@ -296,10 +590,11 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="copyright">© 2025 DevOrbit. Built for developers, by a developer.</p>
+                <p class="copyright">© 2026 DevOrbit. Built for developers, by a developer.</p>
             </div>
         </div>
     </footer>
+
 
     <script src="assets/js/main.js"></script>
     <script>
@@ -315,4 +610,5 @@
         }
     </script>
 </body>
+
 </html>

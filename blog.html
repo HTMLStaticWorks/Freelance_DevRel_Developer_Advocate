@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,74 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/rtl.css">
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
     <style>
         .blog-hero {
             padding-top: calc(var(--header-height) + 60px);
             text-align: center;
+        }
+
+        /* FAQ Accordion Styles */
+        .faq-item {
+            margin-bottom: 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--bg);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faq-item:hover {
+            border-color: var(--color-accent);
+        }
+
+        .faq-question {
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .faq-question h4 {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            margin: 0;
+            color: var(--text);
+            transition: var(--transition);
+        }
+
+        .faq-item.active .faq-question h4 {
+            color: var(--color-accent);
+        }
+
+        .faq-icon {
+            font-size: 1.2rem;
+            color: var(--color-accent);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            padding: 0 24px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 0 24px 24px;
+        }
+
+        .faq-answer p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin: 0;
         }
 
         .blog-featured {
@@ -40,7 +105,8 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: flex-start;
+            align-items: center;
+            text-align: center;
         }
 
         .blog-card {
@@ -91,17 +157,57 @@
             transition: var(--transition);
         }
 
-        .page-btn:hover, .page-btn.active {
+        .page-btn:hover,
+        .page-btn.active {
             border-color: var(--color-accent);
             color: var(--color-accent);
         }
 
-        @media (max-width: 1024px) {
-            .blog-featured { grid-template-columns: 1fr; }
-            .featured-content { padding: 40px; }
+        @media (max-width: 991px) {
+            .blog-featured {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-content {
+                padding: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem !important;
+            }
+
+            .featured-content {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem !important;
+            }
+
+            .blog-meta {
+                gap: 8px;
+                font-size: 0.65rem;
+            }
+
+            .featured-content {
+                padding: 24px 16px;
+            }
         }
     </style>
 </head>
+
 <body>
     <!-- Header -->
     <header>
@@ -125,12 +231,34 @@
         </div>
     </header>
 
+    <!-- Mobile Drawer -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <div class="drawer" id="drawer">
+        <button class="icon-btn drawer-close" id="drawer-close"><i class="ph ph-x"></i></button>
+        <div class="drawer-links">
+            <a href="index.html" class="drawer-link">Home</a>
+            <a href="home2.html" class="drawer-link">Home 2</a>
+            <a href="about.html" class="drawer-link">About</a>
+            <a href="talks.html" class="drawer-link">Talks</a>
+            <a href="opensource.html" class="drawer-link">Open Source</a>
+            <a href="blog.html" class="drawer-link">Blog</a>
+            <a href="contact.html" class="drawer-link">Contact</a>
+            <a href="login.html" class="btn btn-primary drawer-login-btn">Login</a>
+        </div>
+        <div class="drawer-footer">
+            <button class="btn btn-secondary" id="mobile-theme-toggle" style="width: 100%;"><i class="ph ph-moon"></i>
+                Theme</button>
+            <button class="btn btn-secondary" id="mobile-rtl-toggle" style="width: 100%;"><i
+                    class="ph ph-arrows-left-right"></i> RTL</button>
+        </div>
+    </div>
+
     <main>
         <section class="blog-hero">
             <div class="container">
                 <span class="section-subtitle">Insights</span>
                 <h1 class="hero-title">Developer Notes & Dispatches</h1>
-                
+
                 <div class="filter-bar" style="margin-top: 40px;">
                     <button class="filter-btn active">All</button>
                     <button class="filter-btn">SDK Tutorials</button>
@@ -140,51 +268,57 @@
                 </div>
 
                 <div class="blog-featured">
-                    <img src="assets/img/blog_img_feat.png" alt="Featured Post" class="featured-img" style="object-fit: cover; border-radius: var(--radius); border: 1px solid var(--border);">
+                    <img src="assets/img/blog_img_feat.png" alt="Featured Post" class="featured-img"
+                        style="object-fit: cover; border-radius: var(--radius); border: 1px solid var(--border);">
                     <div class="featured-content">
                         <div class="blog-meta">
                             <span class="blog-tag">DevRel Insights</span>
                             <span>•</span>
                             <span>May 12, 2024</span>
                         </div>
-                        <h2 class="section-title" style="font-size: 2.5rem; text-align: left;">The Evolution of Developer Experience in 2024</h2>
-                        <p class="card-text" style="text-align: left; margin: 20px 0 40px;">Exploring the shift from simple APIs to comprehensive developer ecosystems and what it means for your strategy.</p>
+                        <h2 class="section-title" style="font-size: 2.5rem;">The Evolution of
+                            Developer Experience in 2024</h2>
+                        <p class="card-text" style="margin: 20px 0 40px;">Exploring the shift from
+                            simple APIs to comprehensive developer ecosystems and what it means for your strategy.</p>
                         <a href="blog-single.html" class="btn btn-primary">Read Article</a>
                     </div>
                 </div>
 
                 <div class="card-grid" style="margin-top: 60px;">
                     <div class="card blog-card">
-                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop" alt="Post 1">
+                        <img src="assets/img/blog_img_1.png" alt="Post 1">
                         <div class="blog-meta">
                             <span class="blog-tag">SDK Tutorials</span>
                             <span>•</span>
                             <span>May 05, 2024</span>
                         </div>
                         <h3 class="card-title">Building a TypeScript SDK from Scratch</h3>
-                        <p class="card-text">A step-by-step guide to setting up a modern SDK project with best practices.</p>
+                        <p class="card-text">A step-by-step guide to setting up a modern SDK project with best
+                            practices.</p>
                         <a href="blog-single.html" class="card-link">Read More <i class="ph ph-arrow-right"></i></a>
                     </div>
                     <div class="card blog-card">
-                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop" alt="Post 2">
+                        <img src="assets/img/blog_img_2.png" alt="Post 2">
                         <div class="blog-meta">
                             <span class="blog-tag">Community Building</span>
                             <span>•</span>
                             <span>Apr 28, 2024</span>
                         </div>
                         <h3 class="card-title">Measuring the ROI of Developer Relations</h3>
-                        <p class="card-text">How to track and report the impact of your DevRel efforts beyond simple metrics.</p>
+                        <p class="card-text">How to track and report the impact of your DevRel efforts beyond simple
+                            metrics.</p>
                         <a href="blog-single.html" class="card-link">Read More <i class="ph ph-arrow-right"></i></a>
                     </div>
                     <div class="card blog-card">
-                        <img src="https://images.unsplash.com/photo-1550439062-609e1531270e?q=80&w=2070&auto=format&fit=crop" alt="Post 3">
+                        <img src="assets/img/blog_img_3.png" alt="Post 3">
                         <div class="blog-meta">
                             <span class="blog-tag">Open Source</span>
                             <span>•</span>
                             <span>Apr 20, 2024</span>
                         </div>
                         <h3 class="card-title">OSS Maintenance: Lessons Learned</h3>
-                        <p class="card-text">The challenges and rewards of maintaining a popular open-source project over time.</p>
+                        <p class="card-text">The challenges and rewards of maintaining a popular open-source project
+                            over time.</p>
                         <a href="blog-single.html" class="card-link">Read More <i class="ph ph-arrow-right"></i></a>
                     </div>
                     <div class="card blog-card">
@@ -195,7 +329,8 @@
                             <span>Apr 12, 2024</span>
                         </div>
                         <h3 class="card-title">Mastering Technical Writing</h3>
-                        <p class="card-text">Best practices for writing clear, concise, and engaging technical documentation.</p>
+                        <p class="card-text">Best practices for writing clear, concise, and engaging technical
+                            documentation.</p>
                         <a href="blog-single.html" class="card-link">Read More <i class="ph ph-arrow-right"></i></a>
                     </div>
                     <div class="card blog-card">
@@ -206,7 +341,8 @@
                             <span>Apr 05, 2024</span>
                         </div>
                         <h3 class="card-title">Hosting Your First Hackathon</h3>
-                        <p class="card-text">A comprehensive checklist and guide for organizing successful developer hackathons.</p>
+                        <p class="card-text">A comprehensive checklist and guide for organizing successful developer
+                            hackathons.</p>
                         <a href="blog-single.html" class="card-link">Read More <i class="ph ph-arrow-right"></i></a>
                     </div>
                     <div class="card blog-card">
@@ -217,7 +353,8 @@
                             <span>Mar 28, 2024</span>
                         </div>
                         <h3 class="card-title">The Anatomy of a Great README</h3>
-                        <p class="card-text">Why your README is the most important file in your repository and how to perfect it.</p>
+                        <p class="card-text">Why your README is the most important file in your repository and how to
+                            perfect it.</p>
                         <a href="blog-single.html" class="card-link">Read More <i class="ph ph-arrow-right"></i></a>
                     </div>
                 </div>
@@ -232,13 +369,58 @@
         </section>
     </main>
 
+    <section class="faq-section" style="padding: 120px 0; background: var(--bg-surface);">
+        <div class="container" style="max-width: 800px;">
+            <div class="section-header">
+                <span class="section-subtitle">FAQ</span>
+                <h2 class="section-title">Common Questions</h2>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>How often do you publish new articles?</h4>
+                        <i class="ph ph-plus faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>I typically share new insights every two weeks. These range from technical SDK tutorials to
+                            strategic advice on community building and developer advocacy.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Do you accept guest contributions?</h4>
+                        <i class="ph ph-plus faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Currently, I am not accepting outside guest posts. This blog serves as a personal repository
+                            of my professional experiences and technical research in the DevRel space.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Can I use your code snippets in my projects?</h4>
+                        <i class="ph ph-plus faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! All code snippets shared on this blog are licensed under MIT. Feel free to use,
+                            adapt, and build upon them in your own commercial or personal projects.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="index.html" class="logo">DevOrbit<span>◉</span></a>
-                    <p class="footer-text">A developer advocate at the center of a gravitational ecosystem of communities, tools, and content.</p>
+                    <p class="footer-text">A developer advocate at the center of a gravitational ecosystem of
+                        communities, tools, and content.</p>
                 </div>
                 <div>
                     <h4 class="footer-heading">Navigation</h4>
@@ -270,11 +452,31 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="copyright">© 2025 DevOrbit. Built for developers, by a developer.</p>
+                <p class="copyright">© 2026 DevOrbit. Built for developers, by a developer.</p>
             </div>
         </div>
     </footer>
 
+
     <script src="assets/js/main.js"></script>
+    <script>
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+
+                // Close all other items
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                });
+
+                // Toggle current item
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
+
 </html>

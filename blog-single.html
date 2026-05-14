@@ -8,6 +8,7 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/rtl.css">
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
     <style>
         .blog-post {
             padding-top: calc(var(--header-height) + 60px);
@@ -153,6 +154,28 @@
         </div>
     </header>
 
+    <!-- Mobile Drawer -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <div class="drawer" id="drawer">
+        <button class="icon-btn drawer-close" id="drawer-close"><i class="ph ph-x"></i></button>
+        <div class="drawer-links">
+            <a href="index.html" class="drawer-link">Home</a>
+            <a href="home2.html" class="drawer-link">Home 2</a>
+            <a href="about.html" class="drawer-link">About</a>
+            <a href="talks.html" class="drawer-link">Talks</a>
+            <a href="opensource.html" class="drawer-link">Open Source</a>
+            <a href="blog.html" class="drawer-link">Blog</a>
+            <a href="contact.html" class="drawer-link">Contact</a>
+            <a href="login.html" class="btn btn-primary drawer-login-btn">Login</a>
+        </div>
+        <div class="drawer-footer">
+            <button class="btn btn-secondary" id="mobile-theme-toggle" style="width: 100%;"><i class="ph ph-moon"></i>
+                Theme</button>
+            <button class="btn btn-secondary" id="mobile-rtl-toggle" style="width: 100%;"><i
+                    class="ph ph-arrows-left-right"></i> RTL</button>
+        </div>
+    </div>
+
     <main>
         <article class="blog-post">
             <div class="container">
@@ -229,8 +252,7 @@
                         <h2 class="section-title">Related Posts</h2>
                         <div class="card-grid">
                             <div class="card blog-card">
-                                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop"
-                                    alt="Post 1">
+                                <img src="assets/img/blog_related_1.png" alt="Post 1">
                                 <div class="blog-meta">
                                     <span class="blog-tag">SDK Tutorials</span>
                                     <span>•</span>
@@ -241,8 +263,7 @@
                                         class="ph ph-arrow-right"></i></a>
                             </div>
                             <div class="card blog-card">
-                                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop"
-                                    alt="Post 2">
+                                <img src="assets/img/blog_related_2.png" alt="Post 2">
                                 <div class="blog-meta">
                                     <span class="blog-tag">Community Building</span>
                                     <span>•</span>
@@ -298,10 +319,11 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="copyright">© 2025 DevOrbit. Built for developers, by a developer.</p>
+                <p class="copyright">© 2026 DevOrbit. Built for developers, by a developer.</p>
             </div>
         </div>
     </footer>
+
 
     <script src="assets/js/main.js"></script>
 </body>

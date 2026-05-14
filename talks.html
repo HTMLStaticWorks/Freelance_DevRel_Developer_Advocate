@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/rtl.css">
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
     <style>
         .talks-hero {
             padding-top: calc(var(--header-height) + 60px);
@@ -99,10 +101,29 @@
         }
 
         @media (max-width: 768px) {
-            .stats-bar { flex-direction: column; gap: 30px; }
+            .stats-bar {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+
+            .hero-title {
+                font-size: clamp(2.2rem, 10vw, 4rem);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .stat-num {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
+
 <body>
     <!-- Header -->
     <header>
@@ -126,13 +147,35 @@
         </div>
     </header>
 
+    <!-- Mobile Drawer -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <div class="drawer" id="drawer">
+        <button class="icon-btn drawer-close" id="drawer-close"><i class="ph ph-x"></i></button>
+        <div class="drawer-links">
+            <a href="index.html" class="drawer-link">Home</a>
+            <a href="home2.html" class="drawer-link">Home 2</a>
+            <a href="about.html" class="drawer-link">About</a>
+            <a href="talks.html" class="drawer-link">Talks</a>
+            <a href="opensource.html" class="drawer-link">Open Source</a>
+            <a href="blog.html" class="drawer-link">Blog</a>
+            <a href="contact.html" class="drawer-link">Contact</a>
+            <a href="login.html" class="btn btn-primary drawer-login-btn">Login</a>
+        </div>
+        <div class="drawer-footer">
+            <button class="btn btn-secondary" id="mobile-theme-toggle" style="width: 100%;"><i class="ph ph-moon"></i>
+                Theme</button>
+            <button class="btn btn-secondary" id="mobile-rtl-toggle" style="width: 100%;"><i
+                    class="ph ph-arrows-left-right"></i> RTL</button>
+        </div>
+    </div>
+
     <main>
         <section class="talks-hero">
             <div class="container">
                 <span class="section-subtitle">Archive</span>
                 <h1 class="hero-title">On Stage & Online</h1>
                 <p class="section-subtitle" style="margin-top: 20px;">50+ Talks Given Across 15 Countries</p>
-                
+
                 <div class="stats-bar">
                     <div class="stat-group">
                         <span class="stat-num">52</span>
@@ -162,7 +205,8 @@
 
                 <div class="card-grid" id="talks-grid">
                     <div class="card talk-card" data-type="keynote">
-                        <img src="assets/img/talk_1_img.png" alt="The Future of DevEx" style="width: 100%; height: 200px; object-fit: cover; border-radius: calc(var(--radius) - 4px); margin-bottom: 20px; border: 1px solid var(--border);">
+                        <img src="assets/img/talk_1_img.png" alt="The Future of DevEx"
+                            style="width: 100%; height: 200px; object-fit: cover; border-radius: calc(var(--radius) - 4px); margin-bottom: 20px; border: 1px solid var(--border);">
                         <span class="talk-badge">Keynote</span>
                         <h3 class="card-title">The Future of DevEx</h3>
                         <p class="card-text">KubeCon 2024 • Chicago, IL</p>
@@ -172,7 +216,8 @@
                         </div>
                     </div>
                     <div class="card talk-card" data-type="workshop">
-                        <img src="assets/img/talk_2_img.png" alt="Building SDKs That Scale" style="width: 100%; height: 200px; object-fit: cover; border-radius: calc(var(--radius) - 4px); margin-bottom: 20px; border: 1px solid var(--border);">
+                        <img src="assets/img/talk_2_img.png" alt="Building SDKs That Scale"
+                            style="width: 100%; height: 200px; object-fit: cover; border-radius: calc(var(--radius) - 4px); margin-bottom: 20px; border: 1px solid var(--border);">
                         <span class="talk-badge">Workshop</span>
                         <h3 class="card-title">Building SDKs That Scale</h3>
                         <p class="card-text">DevRelCon • London, UK</p>
@@ -182,7 +227,8 @@
                         </div>
                     </div>
                     <div class="card talk-card" data-type="panel">
-                        <img src="assets/img/talk_3_img.png" alt="OSS Sustainability" style="width: 100%; height: 200px; object-fit: cover; border-radius: calc(var(--radius) - 4px); margin-bottom: 20px; border: 1px solid var(--border);">
+                        <img src="assets/img/talk_3_img.png" alt="OSS Sustainability"
+                            style="width: 100%; height: 200px; object-fit: cover; border-radius: calc(var(--radius) - 4px); margin-bottom: 20px; border: 1px solid var(--border);">
                         <span class="talk-badge">Panel</span>
                         <h3 class="card-title">OSS Sustainability</h3>
                         <p class="card-text">JSConf EU • Berlin, Germany</p>
@@ -191,7 +237,8 @@
                         </div>
                     </div>
                     <div class="card talk-card" data-type="podcast">
-                        <img src="assets/img/talk_4_img.png" alt="DevRel Foundations" style="width: 100%; height: 200px; object-fit: cover; border-radius: calc(var(--radius) - 4px); margin-bottom: 20px; border: 1px solid var(--border);">
+                        <img src="assets/img/talk_4_img.png" alt="DevRel Foundations"
+                            style="width: 100%; height: 200px; object-fit: cover; border-radius: calc(var(--radius) - 4px); margin-bottom: 20px; border: 1px solid var(--border);">
                         <span class="talk-badge">Podcast</span>
                         <h3 class="card-title">DevRel Foundations</h3>
                         <p class="card-text">Code & Coffee Podcast</p>
@@ -200,7 +247,8 @@
                         </div>
                     </div>
                     <div class="card talk-card" data-type="keynote">
-                        <img src="assets/img/talk_5_img.png" alt="Scaling Community First" style="width: 100%; height: 200px; object-fit: cover; border-radius: calc(var(--radius) - 4px); margin-bottom: 20px; border: 1px solid var(--border);">
+                        <img src="assets/img/talk_5_img.png" alt="Scaling Community First"
+                            style="width: 100%; height: 200px; object-fit: cover; border-radius: calc(var(--radius) - 4px); margin-bottom: 20px; border: 1px solid var(--border);">
                         <span class="talk-badge">Keynote</span>
                         <h3 class="card-title">Scaling Community First</h3>
                         <p class="card-text">GitHub Universe • San Francisco, CA</p>
@@ -210,7 +258,8 @@
                         </div>
                     </div>
                     <div class="card talk-card" data-type="workshop">
-                        <img src="assets/img/talk_6_img.png" alt="API Design Principles" style="width: 100%; height: 200px; object-fit: cover; border-radius: calc(var(--radius) - 4px); margin-bottom: 20px; border: 1px solid var(--border);">
+                        <img src="assets/img/talk_6_img.png" alt="API Design Principles"
+                            style="width: 100%; height: 200px; object-fit: cover; border-radius: calc(var(--radius) - 4px); margin-bottom: 20px; border: 1px solid var(--border);">
                         <span class="talk-badge">Workshop</span>
                         <h3 class="card-title">API Design Principles</h3>
                         <p class="card-text">API World • Santa Clara, CA</p>
@@ -222,6 +271,71 @@
             </div>
         </section>
 
+        <section class="book-talk-section" style="padding: 120px 0; background: var(--bg-surface);">
+            <div class="container" style="max-width: 800px;">
+                <div class="section-header">
+                    <span class="section-subtitle">Collaborate</span>
+                    <h2 class="section-title">Book a Talk</h2>
+                    <p style="color: var(--text-muted); margin-top: 20px;">Interested in having me speak at your event?
+                        Fill out
+                        the form below and let's bring some orbit energy to your community.</p>
+                </div>
+
+                <form class="booking-form" data-validate>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+                        <div class="form-group">
+                            <label class="form-label">Event Name *</label>
+                            <input type="text" class="form-control" placeholder="e.g. DevCon 2025" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Event Date *</label>
+                            <input type="date" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 24px;">
+                        <div class="form-group">
+                            <label class="form-label">Talk Type *</label>
+                            <select class="form-control" required
+                                style="appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%236B6B6B%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 1.2rem top 50%; background-size: .65rem auto;">
+                                <option value="">Select type</option>
+                                <option value="keynote">Keynote</option>
+                                <option value="workshop">Workshop</option>
+                                <option value="panel">Panel</option>
+                                <option value="podcast">Podcast</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Estimated Audience Size</label>
+                            <input type="number" class="form-control" placeholder="e.g. 500">
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 24px;">
+                        <label class="form-label">Proposed Topic / Theme *</label>
+                        <input type="text" class="form-control" placeholder="What should we talk about?" required>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 24px;">
+                        <label class="form-label">Additional Details</label>
+                        <textarea class="form-control"
+                            placeholder="Tell me more about the event and the developers you are targeting..."
+                            style="min-height: 150px;"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary"
+                        style="width: 100%; margin-top: 32px; padding: 18px;">Send
+                        Booking Inquiry</button>
+
+                    <div class="success-msg"
+                        style="display: none; text-align: center; margin-top: 24px; color: var(--color-accent); font-family: var(--font-mono); border: 1px solid var(--color-accent); padding: 20px; border-radius: var(--radius); background: var(--color-accent-dim);">
+                        Inquiry received! I'll check my flight coordinates and get back to you soon. ✈️
+                    </div>
+                </form>
+            </div>
+        </section>
+
         <section class="video-spotlight">
             <div class="container">
                 <div class="section-header">
@@ -229,30 +343,41 @@
                     <h2 class="section-title">The API Economy</h2>
                 </div>
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
                 </div>
                 <div style="text-align: center; margin-top: 40px;">
-                    <p class="bio-text">This talk covers the evolution of API strategy and how developer advocacy plays a crucial role in product adoption.</p>
+                    <p class="bio-text">This talk covers the evolution of API strategy and how developer advocacy plays
+                        a crucial role in product adoption.</p>
                 </div>
             </div>
         </section>
 
-        <section class="speaking-cta" style="padding: 100px 0; text-align: center;">
-            <div class="container">
-                <h2 class="section-title">Invite Me to Speak</h2>
-                <p class="bio-text" style="max-width: 600px; margin: 0 auto 40px;">Looking for a speaker on DevRel, SDK design, or community building? I'd love to contribute to your event.</p>
-                <a href="contact.html?subject=Speaking Request" class="btn btn-primary">Send Speaking Request</a>
+
+        <section class="newsletter" style="padding: 120px 0;">
+            <div class="container" style="max-width: 600px; text-align: center;">
+                <h2 class="section-title">Stay In Orbit</h2>
+                <p style="color: var(--text-muted); margin-bottom: 32px;">Get the latest dispatches on DevRel, community
+                    building, and technical content delivered straight to your inbox.</p>
+                <form class="contact-form" data-validate style="display: flex; gap: 12px;">
+                    <input type="email" required placeholder="Enter your email"
+                        style="flex-grow: 1; padding: 12px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--bg-surface); color: var(--text);">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                    <p class="success-msg" style="display: none; color: var(--color-accent); margin-top: 12px;">
+                        Subscribed! Welcome to the orbit.</p>
+                </form>
             </div>
         </section>
     </main>
-
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="index.html" class="logo">DevOrbit<span>◉</span></a>
-                    <p class="footer-text">A developer advocate at the center of a gravitational ecosystem of communities, tools, and content.</p>
+                    <p class="footer-text">A developer advocate at the center of a gravitational ecosystem of
+                        communities, tools, and content.</p>
                 </div>
                 <div>
                     <h4 class="footer-heading">Navigation</h4>
@@ -284,12 +409,14 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="copyright">© 2025 DevOrbit. Built for developers, by a developer.</p>
+                <p class="copyright">© 2026 DevOrbit. Built for developers, by a developer.</p>
             </div>
         </div>
     </footer>
 
+
     <script src="assets/js/main.js"></script>
     <script src="assets/js/talks.js"></script>
 </body>
+
 </html>

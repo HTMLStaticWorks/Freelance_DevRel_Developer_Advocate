@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/rtl.css">
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
     <style>
         .oss-hero {
             padding-top: calc(var(--header-height) + 60px);
@@ -98,8 +100,10 @@
 
         .pr-info {
             display: flex;
-            flex-direction: column;
-            gap: 4px;
+            flex-direction: row;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
         }
 
         .pr-title {
@@ -111,6 +115,13 @@
             font-family: var(--font-mono);
             font-size: 0.8rem;
             color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .pr-project::before {
+            content: "—";
+            margin-right: 12px;
+            color: var(--border);
         }
 
         .pr-status {
@@ -121,15 +132,59 @@
             text-transform: uppercase;
         }
 
-        .pr-status.merged { background: rgba(163, 113, 247, 0.2); color: #A371F7; }
-        .pr-status.open { background: rgba(0, 255, 148, 0.2); color: var(--color-accent); }
+        .pr-status.merged,
+        .pr-status.open {
+            background: var(--color-accent-dim);
+            color: #008f53;
+            /* High contrast green for light mode */
+        }
+
+        [data-theme="dark"] .pr-status.merged,
+        [data-theme="dark"] .pr-status.open {
+            color: var(--color-accent);
+        }
+
+        @media (max-width: 480px) {
+            .pr-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .pr-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+
+            .pr-project::before {
+                display: none;
+            }
+
+            .pr-status {
+                align-self: flex-start;
+            }
+        }
 
         @media (max-width: 768px) {
-            .pr-item { flex-direction: column; align-items: flex-start; gap: 16px; }
-            .pr-status { align-self: flex-start; }
+            .hero-title {
+                font-size: clamp(2.2rem, 10vw, 4rem);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .github-stats-row {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
+
 <body>
     <!-- Header -->
     <header>
@@ -152,6 +207,28 @@
             </div>
         </div>
     </header>
+
+    <!-- Mobile Drawer -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <div class="drawer" id="drawer">
+        <button class="icon-btn drawer-close" id="drawer-close"><i class="ph ph-x"></i></button>
+        <div class="drawer-links">
+            <a href="index.html" class="drawer-link">Home</a>
+            <a href="home2.html" class="drawer-link">Home 2</a>
+            <a href="about.html" class="drawer-link">About</a>
+            <a href="talks.html" class="drawer-link">Talks</a>
+            <a href="opensource.html" class="drawer-link">Open Source</a>
+            <a href="blog.html" class="drawer-link">Blog</a>
+            <a href="contact.html" class="drawer-link">Contact</a>
+            <a href="login.html" class="btn btn-primary drawer-login-btn">Login</a>
+        </div>
+        <div class="drawer-footer">
+            <button class="btn btn-secondary" id="mobile-theme-toggle" style="width: 100%;"><i class="ph ph-moon"></i>
+                Theme</button>
+            <button class="btn btn-secondary" id="mobile-rtl-toggle" style="width: 100%;"><i
+                    class="ph ph-arrows-left-right"></i> RTL</button>
+        </div>
+    </div>
 
     <main>
         <section class="oss-hero">
@@ -177,7 +254,8 @@
                 </div>
                 <div class="card-grid">
                     <div class="card repo-card">
-                        <img src="assets/img/repo_1_img.png" alt="SDK Starter Template" style="width: 100%; height: 180px; object-fit: cover; border-radius: calc(var(--radius) - 4px); margin-bottom: 20px; border: 1px solid var(--border);">
+                        <img src="assets/img/repo_1_img.png" alt="SDK Starter Template"
+                            style="width: 100%; height: 180px; object-fit: cover; border-radius: calc(var(--radius) - 4px); margin-bottom: 20px; border: 1px solid var(--border);">
                         <div class="repo-header">
                             <span class="repo-name">devorbit/sdk-starter</span>
                             <div class="repo-meta">
@@ -185,31 +263,39 @@
                                 <span><i class="ph ph-git-fork"></i> 80</span>
                             </div>
                         </div>
-                        <p class="card-text">A boilerplate for building high-performance TypeScript SDKs with built-in docs and testing.</p>
+                        <p class="card-text">A boilerplate for building high-performance TypeScript SDKs with built-in
+                            docs and testing.</p>
                         <div class="repo-meta">
-                            <span><div class="lang-dot"></div> TypeScript</span>
+                            <span>
+                                <div class="lang-dot"></div> TypeScript
+                            </span>
                             <span>Maintainer</span>
                         </div>
                         <a href="#" class="card-link">View Repo <i class="ph ph-arrow-square-out"></i></a>
                     </div>
                     <div class="card repo-card">
-                        <img src="assets/img/repo_2_img.png" alt="Community CLI Tool" style="width: 100%; height: 180px; object-fit: cover; border-radius: calc(var(--radius) - 4px); margin-bottom: 20px; border: 1px solid var(--border);">
+                        <img src="assets/img/repo_2_img.png" alt="Community CLI Tool"
+                            style="width: 100%; height: 180px; object-fit: cover; border-radius: calc(var(--radius) - 4px); margin-bottom: 20px; border: 1px solid var(--border);">
                         <div class="repo-header">
-                            <span class="repo-name">devorbit/community-cli</span>
+                            <span class="repo-name">devorbit/mmbi-cli</span>
                             <div class="repo-meta">
                                 <span><i class="ph ph-star"></i> 230</span>
                                 <span><i class="ph ph-git-fork"></i> 45</span>
                             </div>
                         </div>
-                        <p class="card-text">Command-line tool for managing developer communities, automating member onboarding and event tracking.</p>
+                        <p class="card-text">Command-line tool for managing developer communities, automating member
+                            onboarding and event tracking.</p>
                         <div class="repo-meta">
-                            <span><div class="lang-dot" style="background: #f1e05a;"></div> JavaScript</span>
+                            <span>
+                                <div class="lang-dot" style="background: #f1e05a;"></div> JavaScript
+                            </span>
                             <span>Author</span>
                         </div>
                         <a href="#" class="card-link">View Repo <i class="ph ph-arrow-square-out"></i></a>
                     </div>
                     <div class="card repo-card">
-                        <img src="assets/img/repo_3_img.png" alt="Awesome DevRel Resources" style="width: 100%; height: 180px; object-fit: cover; border-radius: calc(var(--radius) - 4px); margin-bottom: 20px; border: 1px solid var(--border);">
+                        <img src="assets/img/repo_3_img.png" alt="Awesome DevRel Resources"
+                            style="width: 100%; height: 180px; object-fit: cover; border-radius: calc(var(--radius) - 4px); margin-bottom: 20px; border: 1px solid var(--border);">
                         <div class="repo-header">
                             <span class="repo-name">awesome-devrel</span>
                             <div class="repo-meta">
@@ -217,10 +303,79 @@
                                 <span><i class="ph ph-git-fork"></i> 300</span>
                             </div>
                         </div>
-                        <p class="card-text">A curated list of amazing DevRel resources, conferences, and tools for advocacy professionals.</p>
+                        <p class="card-text">A curated list of amazing DevRel resources, conferences, and tools for
+                            advocacy professionals.</p>
                         <div class="repo-meta">
-                            <span><div class="lang-dot" style="background: #89e051;"></div> Shell</span>
+                            <span>
+                                <div class="lang-dot" style="background: #89e051;"></div> Shell
+                            </span>
                             <span>Contributor</span>
+                        </div>
+                        <a href="#" class="card-link">View Repo <i class="ph ph-arrow-square-out"></i></a>
+                    </div>
+
+                    <!-- New Card 4 -->
+                    <div class="card repo-card">
+                        <img src="assets/img/repo_4_img.png" alt="Docs Linter"
+                            style="width: 100%; height: 180px; object-fit: cover; border-radius: calc(var(--radius) - 4px); margin-bottom: 20px; border: 1px solid var(--border);">
+                        <div class="repo-header">
+                            <span class="repo-name">devorbit/docs-linter</span>
+                            <div class="repo-meta">
+                                <span><i class="ph ph-star"></i> 318</span>
+                                <span><i class="ph ph-git-fork"></i> 62</span>
+                            </div>
+                        </div>
+                        <p class="card-text">An automated linting tool that checks technical documentation for clarity,
+                            broken links, and outdated code samples.</p>
+                        <div class="repo-meta">
+                            <span>
+                                <div class="lang-dot"></div> TypeScript
+                            </span>
+                            <span>Author</span>
+                        </div>
+                        <a href="#" class="card-link">View Repo <i class="ph ph-arrow-square-out"></i></a>
+                    </div>
+
+                    <!-- New Card 5 -->
+                    <div class="card repo-card">
+                        <img src="assets/img/repo_5_img.png" alt="API Playground"
+                            style="width: 100%; height: 180px; object-fit: cover; border-radius: calc(var(--radius) - 4px); margin-bottom: 20px; border: 1px solid var(--border);">
+                        <div class="repo-header">
+                            <span class="repo-name">devorbit/api-playground</span>
+                            <div class="repo-meta">
+                                <span><i class="ph ph-star"></i> 890</span>
+                                <span><i class="ph ph-git-fork"></i> 140</span>
+                            </div>
+                        </div>
+                        <p class="card-text">An interactive browser-based sandbox for testing and exploring REST APIs
+                            without any setup or authentication hassle.</p>
+                        <div class="repo-meta">
+                            <span>
+                                <div class="lang-dot" style="background: #f1e05a;"></div> JavaScript
+                            </span>
+                            <span>Maintainer</span>
+                        </div>
+                        <a href="#" class="card-link">View Repo <i class="ph ph-arrow-square-out"></i></a>
+                    </div>
+
+                    <!-- New Card 6 -->
+                    <div class="card repo-card">
+                        <img src="assets/img/repo_6_img.png" alt="DevRel Metrics Dashboard"
+                            style="width: 100%; height: 180px; object-fit: cover; border-radius: calc(var(--radius) - 4px); margin-bottom: 20px; border: 1px solid var(--border);">
+                        <div class="repo-header">
+                            <span class="repo-name">devorbit/devrel-metrics</span>
+                            <div class="repo-meta">
+                                <span><i class="ph ph-star"></i> 540</span>
+                                <span><i class="ph ph-git-fork"></i> 95</span>
+                            </div>
+                        </div>
+                        <p class="card-text">An open-source dashboard for tracking DevRel KPIs — community growth,
+                            content reach, and developer satisfaction scores.</p>
+                        <div class="repo-meta">
+                            <span>
+                                <div class="lang-dot" style="background: #3572A5;"></div> Python
+                            </span>
+                            <span>Author</span>
                         </div>
                         <a href="#" class="card-link">View Repo <i class="ph ph-arrow-square-out"></i></a>
                     </div>
@@ -233,7 +388,7 @@
                     </div>
                     <div class="pr-item">
                         <div class="pr-info">
-                            <span class="pr-title">Implemented dark mode support for docs engine</span>
+                            <span class="pr-title">Implemented dark mode support </span>
                             <span class="pr-project">Docusaurus / Main Repo</span>
                         </div>
                         <span class="pr-status merged">Merged</span>
@@ -259,7 +414,10 @@
         <section class="philosophy" style="padding: 100px 0; background: var(--bg-surface);">
             <div class="container" style="max-width: 800px; text-align: center;">
                 <h2 class="section-title">Open Source Philosophy</h2>
-                <p class="bio-text">I believe in open knowledge and community-first tooling. Most of my work is public because I believe that collaboration is the fastest path to innovation. Whether it's a small CLI tool or a large-scale framework, I aim to build things that solve real problems for real developers.</p>
+                <p class="bio-text">I believe in open knowledge and community-first tooling. Most of my work is public
+                    because I believe that collaboration is the fastest path to innovation. Whether it's a small CLI
+                    tool or a large-scale framework, I aim to build things that solve real problems for real developers.
+                </p>
                 <a href="contact.html" class="btn btn-primary" style="margin-top: 40px;">Let's Build Together</a>
             </div>
         </section>
@@ -271,7 +429,8 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="index.html" class="logo">DevOrbit<span>◉</span></a>
-                    <p class="footer-text">A developer advocate at the center of a gravitational ecosystem of communities, tools, and content.</p>
+                    <p class="footer-text">A developer advocate at the center of a gravitational ecosystem of
+                        communities, tools, and content.</p>
                 </div>
                 <div>
                     <h4 class="footer-heading">Navigation</h4>
@@ -303,10 +462,11 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="copyright">© 2025 DevOrbit. Built for developers, by a developer.</p>
+                <p class="copyright">© 2026 DevOrbit. Built for developers, by a developer.</p>
             </div>
         </div>
     </footer>
+
 
     <script src="assets/js/main.js"></script>
     <script>
@@ -322,4 +482,5 @@
         }
     </script>
 </body>
+
 </html>
