@@ -23,3 +23,13 @@
 [dir="rtl"] .btn-primary svg {
     transform: scaleX(-1);
 }
+
+[dir="rtl"] .password-toggle {
+    right: auto;
+    left: 16px;
+}
+
+[dir="rtl"] .password-wrapper .form-control {
+    padding-left: 48px;
+    padding-right: 16px;
+}

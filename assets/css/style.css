@@ -7,8 +7,9 @@
     --text-muted: #6B6B6B;
     --color-primary: #0A0A0A;
     --color-secondary: #F5F5F0;
-    --color-accent: #00FF94;
-    --color-accent-dim: rgba(0, 255, 148, 0.15);
+    --color-accent: #008050;
+    --color-accent-dim: rgba(0, 128, 80, 0.15);
+    --btn-text: #FFFFFF;
     --border: rgba(10, 10, 10, 0.12);
     --font-mono: 'Space Mono', monospace;
     --font-display: 'Syne', sans-serif;
@@ -27,6 +28,9 @@
     --color-primary: #F5F5F0;
     --color-secondary: #0F0F0F;
     --border: rgba(245, 245, 240, 0.10);
+    --color-accent: #00FF94;
+    --color-accent-dim: rgba(0, 255, 148, 0.15);
+    --btn-text: #0A0A0A;
 }
 
 * {
@@ -49,8 +53,17 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-body);
+    font-weight: 500;
+    line-height: 1.25;
+}
+
+.hero-title,
+.hero-v2-title,
+.section-title,
+.post-title {
     font-family: var(--font-display);
-    font-weight: 800;
+    font-weight: 500;
     line-height: 1.1;
 }
 
@@ -128,7 +141,7 @@ section {
 
 .btn-primary {
     background-color: var(--color-accent);
-    color: #0A0A0A;
+    color: var(--btn-text);
 }
 
 .btn-primary:hover {
@@ -233,6 +246,10 @@ textarea.form-control {
 
 .password-toggle:hover {
     color: var(--text);
+}
+
+.password-wrapper .form-control {
+    padding-right: 48px;
 }
 
 .error-msg {
@@ -607,7 +624,7 @@ footer {
     }
 }
 
-.drawer-login-btn {
+.drawer-contact-btn {
     width: 100%;
     margin-top: 10px;
 }
