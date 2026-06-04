@@ -644,15 +644,6 @@ footer {
     .footer-grid {
         grid-template-columns: 1fr;
         gap: 40px;
-        text-align: center;
-    }
-    
-    .footer-brand, .footer-text {
-        margin: 0 auto;
-    }
-    
-    .footer-socials {
-        justify-content: center;
     }
 }
 
@@ -667,6 +658,32 @@ footer {
 
     .section-title {
         font-size: 1.5rem;
+    }
+
+    /* Center align footer contents only in 360 view */
+    .footer-grid {
+        text-align: center;
+    }
+    
+    .footer-brand .logo {
+        justify-content: center;
+    }
+    
+    .footer-text {
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .footer-heading {
+        text-align: center;
+    }
+    
+    .footer-links {
+        align-items: center;
+    }
+    
+    .footer-socials {
+        justify-content: center;
     }
 }
 
